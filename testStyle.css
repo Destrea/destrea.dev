@@ -5,17 +5,30 @@
 body {
     font-family: "Comic Sans MS", "Comic Sans", cursive;
     padding: 20px;
-    background: #3b648c;
+    background: #7d99b5;
 }
 
 .header {
     font-family: "Comic Sans MS", "Comic Sans", cursive;
     padding: 30px;
-    font-size: 20px;
+    font-size: 30px;
     text-align: center;
-    background: #3b648c;
 }
 
+.p{
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    padding: 30px;
+    font-size: 30px;
+    text-align: left;
+
+}
+
+.footer{
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    padding: 30px;
+    font-size: 20px;
+    text-align: center;
+}
 
 @media screen and (max-width: 800px) {
     .leftcolumn, .rightcolumn {
