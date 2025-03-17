@@ -3,13 +3,13 @@
 }
 
 body {
-    font-family: "Comic Sans";
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
     padding: 20px;
     background: #3b648c;
 }
 
 .header {
-    font-family: "Comic Sans";
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
     padding: 30px;
     font-size: 20px;
     text-align: center;
