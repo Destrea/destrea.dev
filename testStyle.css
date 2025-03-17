@@ -1,0 +1,23 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-familt: Arial;
+    padding: 20px;
+    background: #f1f1f1;
+}
+
+.header {
+    padding: 30px;
+    font-size: 20px;
+    text-align: center;
+}
+
+
+@media screen and (max-width: 800px) {
+    .leftcolumn, .rightcolumn {
+        width: 100%;
+        padding: 0;
+    }
+}
