@@ -1,0 +1,151 @@
+body {
+    font-family: Tektur, sans-serif;
+    background-color: black;
+    margin: 0;
+}
+
+section {
+    width: 100vw;
+    max-height: 50px;
+    background-color: #7d8fae;
+    z-index: 9;
+}
+
+h1 {
+    font-family: Tektur, sans-serif;
+    color: #ffd159;
+    padding: 0px 0px 0px 50px;
+}
+
+h2 {
+    font-family: Tektur, sans-serif;
+    font-size: 32px;
+    color: #ffd159;
+    writing-mode: vertical-lr;
+    margin: 0;
+    padding: 5px 0px 0px 0px;
+    background-color: rgba(0,0,0,0.6);
+    border-radius: 5px;
+    margin: 5px;
+}
+
+h3 {
+    font-family: Tektur, sans-serif;
+    color: #ffd159;
+    font-size: 32px;
+    margin: 0;
+    padding: 10px 0px 0px 0px;
+}
+
+img {
+    padding: 30px 2px 2px 2px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+p {
+    font-size: 24px;
+    margin: 5px;
+    padding: 0px 20px 0px 0px;
+}
+
+header {
+    position: relative;
+    display: block;
+    background-color: black;
+    z-index: 9;
+    width: 100vw;
+}
+
+footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}
+
+canvas {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    margin: 0;
+    z-index: 0;
+}
+
+.overlay {
+    position: relative;
+    height: 1000px;
+}
+
+.overlay-content {
+    position:absolute;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+}
+
+.vertList {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    padding: 0px 50px 0px 50px;
+    z-index: 1;
+}
+
+.projectContent {
+    position: absolute;
+    z-index: 9;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.project-description {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    padding: 0px 0px 0px 25px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 8px;
+    min-width: 300px;
+    min-height: 200px;
+    z-index: 9;
+}
+
+.center-full {
+    position: absolute;
+    display: block;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    z-index: 0;
+}
+
+
+
+#testdiv {
+    position: absolute;
+    z-index: 9;
+    background-color: white;
+    border: 1px solid black;
+    text-align: center;
+}
+
+#testdivHeader {
+    padding: 10px;
+    cursor: move;
+    z-index: 10;
+    background-color: redl
+    color: #fff;
+}
+
+.tektur-font {
+    font-family: "Tektur", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+    "wdth" 100;
+}
