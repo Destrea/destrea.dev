@@ -37,11 +37,16 @@ h3 {
     padding: 10px 0px 0px 0px;
 }
 
+h4 {
+    font-family: Tektur, sans-serif;
+    color: #000000;
+    font-size: 20px;
+    margin: 0;
+    padding: 10px 7px 0px 7px;
+}
+
 img {
-    padding: 30px 2px 2px 2px;
-    background-color: white;
-    border: 2px solid black;
-    border-radius: 5px;
+    padding: 2px 2px 2px 2px;
     margin: 5px;
 }
 
@@ -74,6 +79,7 @@ canvas {
     z-index: 0;
 }
 
+
 .overlay {
     position: relative;
     height: 1000px;
@@ -94,10 +100,28 @@ canvas {
     z-index: 1;
 }
 
+
+.taskbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.taskbarExit {
+    z-index: 9;
+    align-items: right;
+}
+
 .projectContent {
+
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 5px;
+
     position: absolute;
     z-index: 9;
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
 }
 

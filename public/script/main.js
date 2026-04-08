@@ -100,8 +100,6 @@ void main()
     int downscaleVal = 4;
     vec2 resolution = u_resolution / float(downscaleVal);
 
-
-
     //Perlin Noise functions
     vec2 p = (gl_FragCoord.xy/u_resolution.y) * 2.0 - 1.0;
     vec3 xyz = vec3(p, 0.0);
