@@ -77,8 +77,9 @@ float perlinnoise(vec2 p)
     vec2 fade_xy = fade(Pf.xy);
     vec2 n_x = mix(vec2(n00, n01), vec2(n10, n11), fade_xy.x);
 
+    float wave = (1.0/8.0) * (sin(sqrt(10.0) * sin((0.1) * uTime) + cos(uTime))) + 0.5;
     float n_xy = mix(n_x.x, n_x.y, fade_xy.y);
-    return 2.3 * n_xy;
+    return wave * 3.5 * n_xy;
 }
 
 float color(vec2 xy) { return perlinnoise(1.5*xy); }
@@ -99,13 +100,13 @@ void main()
     int downscaleVal = 4;
     vec2 resolution = u_resolution / float(downscaleVal);
 
+
+
     //Perlin Noise functions
     vec2 p = (gl_FragCoord.xy/u_resolution.y) * 2.0 - 1.0;
     vec3 xyz = vec3(p, 0.0);
     float n = color(xyz.xy * 4.0);
     vec3 finalColor = vec3(0.5 + 0.5 * vec3(n,n,n));
-
-
 
 
     //Dithering
@@ -114,7 +115,7 @@ void main()
     int x = int(gl_FragCoord.x * resolution.x);
     int y = int(gl_FragCoord.y * resolution.y);
     float factor = getBayer4(x, y);
-    float lumiVar = 0.7;
+    float lumiVar = 0.1;
     finalColor = posterize(finalColor,16);
     vec3 attempt = finalColor + (factor * thresh);
 
