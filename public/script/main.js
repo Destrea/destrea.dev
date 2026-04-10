@@ -23,6 +23,26 @@ uniform vec2 u_resolution;
 
 uniform vec4[4] bayer4;
 
+int bayer8[64] = int[64](0, 32, 8, 40, 2, 34, 10, 42,
+                                     48, 16, 56, 24, 50, 18, 58, 26,
+                                     12, 44,  4, 36, 14, 46,  6, 38,
+                                     60, 28, 52, 20, 62, 30, 54, 22,
+                                     3, 35, 11, 43,  1, 33,  9, 41,
+                                     51, 19, 59, 27, 49, 17, 57, 25,
+                                     15, 47,  7, 39, 13, 45,  5, 37,
+                                     63, 31, 55, 23, 61, 29, 53, 21);
+
+const vec3 color0 = vec3(0.06274509803921569,0.3254901960784314,0.5647058823529412);
+const vec3 color1 = vec3(0.10588235294117647,0.5843137254901961,0.5529411764705883);
+const vec3 color2 = vec3(0.3686274509803922,0.7137254901960784,0.6784313725490196);
+const vec3 color3 = vec3(0.8470588235294118,00.8627450980392157,0.7058823529411765);
+const vec3 color4 = vec3(0.996078431372549,0.6588235294117647,0.37254901960784315);
+const vec3 color5 = vec3(0.8862745098039215,0.3803921568627451,0.34901960784313724);
+const vec3 color6 = vec3(0.8862745098039215,0.10980392156862745,0.3803921568627451);
+const vec3 color7 = vec3(0.2196078431372549,0.08627450980392157,0.19215686274509805);
+
+vec3 palette[8] = vec3[8](color0, color1,color2,color3,color4,color5,color6,color7);
+
 vec4 mod289(vec4 x)
 {
     return x - floor(x * (1.0/289.0)) * 289.0;
@@ -44,7 +64,7 @@ vec2 fade(vec2 t) {
 
 float perlinnoise(vec2 p)
 {
-   //Reference: https://stegu.github.io/webgl-noise/webdemo/
+    //Reference: https://stegu.github.io/webgl-noise/webdemo/
     //https://mzucker.github.io/html/perlin-noise-math-faq.html
     //https://www.youtube.com/watch?v=DxUY42r_6Cg&t=342s
 
@@ -77,7 +97,7 @@ float perlinnoise(vec2 p)
     vec2 fade_xy = fade(Pf.xy);
     vec2 n_x = mix(vec2(n00, n01), vec2(n10, n11), fade_xy.x);
 
-    float wave = (1.0/8.0) * (sin(sqrt(10.0) * sin((0.1) * uTime) + cos(uTime))) + 0.5;
+    float wave = ( (1.0/4.0) * sin(sqrt(10.0) * sin((0.1) * uTime) + cos(uTime))) + 1.0;
     float n_xy = mix(n_x.x, n_x.y, fade_xy.y);
     return wave * 3.5 * n_xy;
 }
@@ -94,30 +114,106 @@ vec3 posterize( vec3 color, int levels)
     return (floor(color * float(levels - 1) + 0.5)) / float(levels-1);
 }
 
+
+vec3 closestColor(vec3 palette[8], vec3 attempt, int maxLumi)
+{
+    float shortest = pow((palette[maxLumi].r - attempt.r),2.0) + pow((palette[maxLumi].g - attempt.g),2.0) + pow((palette[maxLumi].b - attempt.b),2.0);
+    vec3 closestColor = palette[maxLumi];
+
+    for(int i = 0; i < 8; i++)
+    {
+        float dist = pow((palette[i].r - attempt.r),2.0) + pow((palette[i].g - attempt.g),2.0) + pow((palette[i].b - attempt.b),2.0);
+        //float3 paletteColor = float3(palette[i].r, palette[i].g, palette[i].b);
+        //float dist = colorCompare(paletteColor, attempt);
+        if(dist <= shortest)
+        {
+            shortest = dist;
+            closestColor = palette[i];
+        }
+    }
+    return closestColor;
+}
+
+
+
+float luminance(vec3 color)
+{
+    float lum = dot(vec3(0.2126, 0.7152, 0.0722), color.rgb);
+    return lum;
+}
+
 void main()
 {
     //downscaling
-    int downscaleVal = 4;
-    vec2 resolution = u_resolution / float(downscaleVal);
+    int downscaleVal = 32;
 
+    //Cool horizontal glitch effect
+    /*
+    float resolutionX = float(int( 4.0 * round(u_resolution.x / float(downscaleVal))));
+    float resolutionY = u_resolution.y / float(downscaleVal);
+    vec2 resolution = vec2(resolutionX, resolutionY);
+    */
+
+    float resolutionX = float(int( 32.0 * round(u_resolution.x / float(downscaleVal))));
+    float resolutionY = float(int( 32.0 * round(u_resolution.xy/ float(downscaleVal))));
+    vec2 resolution = vec2(u_resolution.x, u_resolution.y);
+
+    //vec2 resolution = u_resolution;
     //Perlin Noise functions
-    vec2 p = (gl_FragCoord.xy/u_resolution.y) * 2.0 - 1.0;
+    vec2 p = (gl_FragCoord.xy/resolution.y) * 2.0 - 1.0;
     vec3 xyz = vec3(p, 0.0);
     float n = color(xyz.xy * 4.0);
     vec3 finalColor = vec3(0.5 + 0.5 * vec3(n,n,n));
 
-
     //Dithering
 
     vec3 thresh = vec3(1.0/8.0);
-    int x = int(gl_FragCoord.x * resolution.x);
-    int y = int(gl_FragCoord.y * resolution.y);
-    float factor = getBayer4(x, y);
-    float lumiVar = 0.1;
-    finalColor = posterize(finalColor,16);
-    vec3 attempt = finalColor + (factor * thresh);
+    int x = int(gl_FragCoord.x * resolution.x) % 8;
+    int y = int(gl_FragCoord.y * resolution.y) % 8;
+    //float factor = getBayer4(x, y);
+    float factor = float(bayer8[y * 8 + x]) / 64.0;
 
-    fragColor = vec4(attempt, 1.0);
+    finalColor = posterize(finalColor,16);
+
+    vec3 attempt = finalColor + (factor) - 0.07;
+    vec3 pColor = vec3(0.0,0.0,0.0);
+
+    //pColor = closestColor(palette, attempt, 6);
+
+    if(attempt.r >= (7.0 * 0.125))
+    {
+        pColor = color0;
+    }
+    else if(attempt.r >= (6.0 * 0.125))
+    {
+         pColor = color1;
+    }
+    else if(attempt.r >= (5.0 * 0.125))
+    {
+         pColor = color2;
+    }
+    else if(attempt.r >= (4.0 * 0.125))
+    {
+         pColor = color3;
+    }
+    else if(attempt.r >= (3.0 * 0.125))
+    {
+         pColor = color4;
+    }
+    else if(attempt.r >= (2.0 * 0.125))
+    {
+         pColor = color5;
+    }
+    else if(attempt.r >= (1.0 * 0.125))
+    {
+         pColor = color6;
+    }
+    else
+    {
+        pColor = color7;
+    }
+
+    fragColor = vec4(pColor, 1.0);
 }`;
 
 
@@ -164,6 +260,7 @@ function shadersMain()
     const aPointSizeLoc = gl.getAttribLocation(program, 'aPointSize');
     const resLocation = gl.getUniformLocation(program, "u_resolution");
 
+
     gl.uniform4fv(bayer4Location, bayer4);
     // Create a buffer to put three 2d clip space points in
     var positionBuffer = gl.createBuffer();
@@ -182,12 +279,13 @@ function shadersMain()
         resizeCanvas(gl.canvas);
         gl.viewport(0,0, gl.canvas.width, gl.canvas.height);
 
+        gl.uniform2f(resLocation, canvas.width, canvas.width);
         gl.clearColor(0.0, 0.0, 0.0, 1.0);
         gl.clear(gl.COLOR_BUFFER_BIT);
 
         gl.useProgram(program);
         gl.uniform1f(timeLocation, uTime / 1000.0);
-        gl.uniform2f(resLocation, gl.canvas.width, gl.canvas.height);
+
 
         gl.bindVertexArray(quadVAO);
         gl.drawArrays(gl.TRIANGLES, 0, 6);
@@ -211,7 +309,6 @@ function shadersMain()
             canvas.width = displayWidth;
             canvas.height = displayHeight;
         }
-
         return needResize;
     }
 
