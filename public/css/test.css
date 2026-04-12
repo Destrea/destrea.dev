@@ -12,9 +12,14 @@ section {
 }
 
 h1 {
+    position: absolute;
     font-family: Tektur, sans-serif;
-    color: #ffd159;
-    padding: 0px 0px 0px 50px;
+    color: black;
+    padding: 5px 10px 5px 10px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin: 20px 5px 2px 60px;
 }
 
 h2 {
@@ -45,6 +50,16 @@ h4 {
     padding: 10px 7px 0px 7px;
 }
 
+h5 {
+    position: relative;
+    font-family: Charm, cursive;
+    writing-mode: vertical-lr;
+    color: #000000;
+    font-size: 40px;
+    margin: 0;
+}
+
+
 img {
     padding: 2px 2px 2px 2px;
     margin: 5px;
@@ -57,19 +72,28 @@ p {
 }
 
 
+button span {
+    background-color: rgba(0,0,0,0.6);
+    border-radius: 5px;
+    background-size: 50%;
+}
+
+
 .button1 {
     font-family: Tektur;
     font-weight: bold;
     font-size: 32px;
-    color: #ffd159;
+    color: black;
     writing-mode: vertical-lr;
-    margin: 0;
-    padding: 5px 0px 0px 0px;
-    background-color: rgba(0,0,0,0.6);
+    background-color: white;
+    border: 2px solid black;
     border-radius: 5px;
-    margin: 5px;
+    margin: 80px 10px 0px 0px;
+    padding: 5px 5px 5px 5px;
     text-align:left;
 }
+
+
 
 header {
     position: relative;
@@ -101,20 +125,71 @@ canvas {
 }
 
 .overlay-content {
+    height: 100%;
     position:absolute;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     z-index: 1;
+}
+
+
+
+.header-boxes {
+    position: absolute;
+    display: flex:
+    flex-direction: column;
+    padding: 0px 0px 0px 10px;
 }
 
 .vertList {
-    position: relative;
+    position: absolute;
     display: flex;
     flex-direction: row;
-    padding: 0px 50px 0px 50px;
+    padding: 0px 0px 0px 60px;
     z-index: 1;
 }
 
+
+.animWrapper {
+     z-index: 1;
+}
+
+.scroll-text-track {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: clip;
+
+    padding-top: 1.2rem;
+    gap: 1.2rem;
+    animation: my-animation var(--speed, 10s) linear infinite
+    var(--direction, forwards);
+    user-select: none;
+}
+
+.scroll-text {
+    overflow: clip;
+}
+
+.scroll-text span {
+    float: top;
+    height: 25%;
+
+}
+
+@keyframes my-animation {
+    to {
+        transform: translateY(-50%);
+    }
+}
+
+.side-text {
+    position: absolute;
+    display:  inline;
+    padding: 0px 5px 0px 0px;
+    z-index: 1;
+
+}
 
 .taskbar {
     display: flex;
@@ -153,17 +228,6 @@ canvas {
     z-index: 9;
 }
 
-.center-full {
-    position: absolute;
-    display: block;
-    height: 100vh;
-    width: 100vw;
-    margin: 0;
-    z-index: 0;
-}
-
-
-
 #testdiv {
     position: absolute;
     z-index: 9;
@@ -187,4 +251,17 @@ canvas {
     font-style: normal;
     font-variation-settings:
     "wdth" 100;
+}
+
+
+.charm-regular {
+    font-family: "Charm", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.charm-bold {
+    font-family: "Charm", cursive;
+    font-weight: 700;
+    font-style: normal;
 }

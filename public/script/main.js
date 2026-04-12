@@ -13,15 +13,17 @@ void main() {
 
 const fragmentShaderSource2 = `#version 300 es
 
-precision mediump float;
+precision highp float;
 
 uniform float uTime;
 in vec2 vUV;
 
 out vec4 fragColor;
 uniform vec2 u_resolution;
-
 uniform vec4[4] bayer4;
+
+uniform float intensity;
+uniform float wavespeed;
 
 int bayer8[64] = int[64](0, 32, 8, 40, 2, 34, 10, 42,
                                      48, 16, 56, 24, 50, 18, 58, 26,
@@ -97,9 +99,9 @@ float perlinnoise(vec2 p)
     vec2 fade_xy = fade(Pf.xy);
     vec2 n_x = mix(vec2(n00, n01), vec2(n10, n11), fade_xy.x);
 
-    float wave = ( (1.0/4.0) * sin(sqrt(10.0) * sin((0.1) * uTime) + cos(uTime))) + 1.0;
+    float wave = ( (1.0/4.0) * sin(sqrt(10.0) * sin((wavespeed/50.0) * uTime) + cos(uTime))) + 1.0;
     float n_xy = mix(n_x.x, n_x.y, fade_xy.y);
-    return wave * 3.5 * n_xy;
+    return wave * (intensity/20.0) * n_xy;
 }
 
 float color(vec2 xy) { return perlinnoise(1.5*xy); }
@@ -145,7 +147,7 @@ float luminance(vec3 color)
 void main()
 {
     //downscaling
-    int downscaleVal = 32;
+    int downscaleVal = 16;
 
     //Cool horizontal glitch effect
     /*
@@ -154,9 +156,22 @@ void main()
     vec2 resolution = vec2(resolutionX, resolutionY);
     */
 
-    float resolutionX = float(int( 32.0 * round(u_resolution.x / float(downscaleVal))));
-    float resolutionY = float(int( 32.0 * round(u_resolution.xy/ float(downscaleVal))));
-    vec2 resolution = vec2(u_resolution.x, u_resolution.y);
+    //This downscales the resolution to
+    float resolutionX = float(int( float(downscaleVal) * round(u_resolution.x / float(downscaleVal)))) - 2.0;
+    float resolutionY = float(int( float(downscaleVal) * round(u_resolution.xy/ float(downscaleVal)))) - 2.0;
+    //vec2 resolution = vec2(u_resolution.x, u_resolution.y);
+    vec2 resolution = vec2(resolutionX, resolutionY);
+
+    const float PIXEL_SIZE = 10.0;
+    const float CELL_PIXEL_SIZE = 5.0 * PIXEL_SIZE;
+
+    float aspectRatio = u_resolution.x / u_resolution.y;
+
+    vec2 pixelID = floor(vec2(gl_FragCoord.xy) / PIXEL_SIZE);
+    vec2 cellID = floor(vec2(gl_FragCoord.xy) / CELL_PIXEL_SIZE);
+    vec2 cellCoord = cellID * CELL_PIXEL_SIZE;
+
+    vec2 uv = cellCoord/u_resolution * vec2(aspectRatio, 1.0);
 
     //vec2 resolution = u_resolution;
     //Perlin Noise functions
@@ -168,10 +183,10 @@ void main()
     //Dithering
 
     vec3 thresh = vec3(1.0/8.0);
-    int x = int(gl_FragCoord.x * resolution.x) % 8;
-    int y = int(gl_FragCoord.y * resolution.y) % 8;
-    //float factor = getBayer4(x, y);
-    float factor = float(bayer8[y * 8 + x]) / 64.0;
+    int x = int(gl_FragCoord.x * resolution.x);
+    int y = int(gl_FragCoord.y * resolution.y);
+    float factor = getBayer4(x, y);
+    //float factor = float(bayer8[y * 8 + x]) / 64.0;
 
     finalColor = posterize(finalColor,16);
 
@@ -217,6 +232,36 @@ void main()
 }`;
 
 
+//Shaders settings javascript
+
+var intensitySlider = document.getElementById("intensity");
+
+
+var intVal = document.getElementById("intVal");
+intVal.innerHTML = intensitySlider.value;
+
+var intensityValue = intensitySlider.value;
+
+intensitySlider.oninput = function() {
+    intVal.innerHTML = this.value;
+    intensityValue = this.value;
+}
+
+
+var speedSlider = document.getElementById("speed");
+
+var spdVal = document.getElementById("spdVal");
+spdVal.innerHTML = speedSlider.value;
+
+var speedValue = speedSlider.value;
+
+speedSlider.oninput = function() {
+    spdVal.innerHTML = this.value;
+    speedValue = this.value;
+}
+
+
+
 function shadersMain()
 {
     const canvas = document.querySelector('canvas');
@@ -254,6 +299,10 @@ function shadersMain()
         15, 7, 13, 5
     ]);
 
+    //Settings hooks
+    const intensityLoc = gl.getUniformLocation(program, "intensity");
+    const speedLoc = gl.getUniformLocation(program, "wavespeed");
+    //Regular uniforms
     const bayer4Location = gl.getUniformLocation(program, "bayer4");
     const timeLocation = gl.getUniformLocation(program, "uTime");
     const aPositionLoc = gl.getAttribLocation(program, 'aPosition');
@@ -279,13 +328,17 @@ function shadersMain()
         resizeCanvas(gl.canvas);
         gl.viewport(0,0, gl.canvas.width, gl.canvas.height);
 
-        gl.uniform2f(resLocation, canvas.width, canvas.width);
+
         gl.clearColor(0.0, 0.0, 0.0, 1.0);
         gl.clear(gl.COLOR_BUFFER_BIT);
 
         gl.useProgram(program);
         gl.uniform1f(timeLocation, uTime / 1000.0);
+        gl.uniform2f(resLocation, canvas.width, canvas.width);
 
+        //Settings uniforms
+        gl.uniform1f(intensityLoc, intensityValue);
+        gl.uniform1f(speedLoc,  speedValue);
 
         gl.bindVertexArray(quadVAO);
         gl.drawArrays(gl.TRIANGLES, 0, 6);
@@ -336,6 +389,7 @@ shadersMain();
 
 dragElement(document.getElementById("projectContent"));
 dragElement(document.getElementById("project-description"));
+//dragElement(document.getElementById("project-settings"));
 
 function dragElement(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
