@@ -150,15 +150,12 @@ canvas {
 }
 
 
-.animWrapper {
-     z-index: 1;
-}
-
 .scroll-text-track {
+    position: relative;
     display: flex;
     flex-direction: column;
     height: 100%;
-    overflow: clip;
+   overflow: hidden;
 
     padding-top: 1.2rem;
     gap: 1.2rem;
@@ -168,7 +165,7 @@ canvas {
 }
 
 .scroll-text {
-    overflow: clip;
+    overflow: hidden;
 }
 
 .scroll-text span {
@@ -201,6 +198,15 @@ canvas {
     z-index: 9;
     align-items: right;
 }
+
+
+.content-container {
+    padding: 2px 2px 2px 2px;
+    margin: 5px;
+    border: 1px solid gray;
+    border-radius: 1px;
+}
+
 
 .projectContent {
 

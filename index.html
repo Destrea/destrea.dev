@@ -3,7 +3,6 @@
     <head>
         <!-- CSS -->
         <link rel="stylesheet" href="public/css/test.css?v=2" type="text/css">
-
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,24 +24,33 @@
             <img src="public/images/3D.png" alt="ffxiv" width="744" height="411">
         </div>
 
-        <div id="project-description" class="project-description" style="top: 150px; left: 1156px;">
-            <div id="#testdivHeader"> <h3> _description</h3> </div>
+        <div id="project-description" class="projectContent style="top: 150px; left: 1156px;">
+            <div class='taskbar'>
+                <h4> Description </h4>
+                <h4> X </h4>        <!-- X icon goes here -->
+            </div>
+            <div class="content-container">
             <p>Testing Text 123 </p>
+            </div>
         </div>
 
-        <div id="project-settings" class="project-description" style="top: 500px; left: 50px;">
-            <div id="#testdivHeader"> <h3> Settings </h3> </div>
-            <p> Perlin Intensity </p>
-            <div class="slidecontainer">
-                <input type="range" min="-100" max="100" value="50" class="slider" id="intensity">
-                <span id="intVal" style="font-weight:bold; font-size:24; color:black"> 25 </span>
+        <div id="project-settings" class="projectContent" style="top: 500px; left: 50px;">
+            <div class='taskbar'>
+                <h4> Settings </h4>
+                <h4> X </h4>        <!-- X icon goes here -->
             </div>
-            <p> Animation Speed </p>
-            <div class="slidecontainer">
-                <input type="range" min="1" max="100" value="50" class="slider" id="speed">
-                <span id="spdVal" style="font-weight:bold; font-size:24; color:black"> 25 </span>
+            <div class="content-container">
+                <p> Perlin Intensity </p>
+                <div class="slidecontainer">
+                    <input type="range" min="-100" max="100" value="50" class="slider" id="intensity">
+                    <span id="intVal" style="font-weight:bold; font-size:18; color:black"> 25 </span>
+                </div>
+                <p> Animation Speed </p>
+                <div class="slidecontainer">
+                    <input type="range" min="1" max="100" value="50" class="slider" id="speed">
+                    <span id="spdVal" style="font-weight:bold; font-size:18; color:black"> 25 </span>
+                </div>
             </div>
-
 
 
         </div>
@@ -51,7 +59,7 @@
 
         <div class= "overlay">
 
-            <canvas id= "canvas" width="100" height="100"></canvas>
+            <canvas id= "canvas" width="100vw" height="100vh"></canvas>
             <script src="public/script/main.js?v=2"></script>
 
             <div class= "overlay-content">
@@ -66,7 +74,7 @@
                             <span><h5>╔[all content designed by destrea]╗</h5></span>
                             <span><h5>«»</h5></span>
                             <span><h5>╔[all content designed by destrea]╗</h5></span>
-                            <span><h5>«»</h5></span>
+                            <span><h5>«»</h5>
                         </div>
                     </div>
                 </div>
