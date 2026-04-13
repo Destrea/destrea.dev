@@ -66,6 +66,7 @@ h5 {
 img {
     padding: 2px 2px 2px 2px;
     margin: 5px;
+    user-select: none;
 }
 
 p {
@@ -91,12 +92,41 @@ button span {
     background-color: white;
     border: 3px solid black;
     border-radius: 5px;
-    margin: 80px 10px 0px 0px;
+    margin: 10px 10px 0px 0px;
     padding: 5px 5px 5px 5px;
     text-align:left;
 }
 
+.button2 {
+    font-family: charm-bold;
+    font-weight: bold;
+    font-size: 32px;
+    color: black;
+    background-color: white;
+    border: 3px solid black;
+    border-radius: 5px;
+    margin: 5px 10px 0px 0px;
+    padding: 5px 5px 5px 5px;
+    text-align:left;
+}
 
+.button3 {
+    font-family: charm-bold;
+    font-weight: bold;
+    font-size: 20px;
+    color: black;
+    background-color: white;
+    border: 3px solid black;
+    border-radius: 5px;
+    margin: 2px;
+    padding: 2px 5px 2px 5px;
+    text-align: center;
+}
+
+
+.show {
+    z-index: 9;
+}
 
 header {
     position: relative;
@@ -142,6 +172,17 @@ canvas {
     display: flex:
     flex-direction: column;
     padding: 0px 0px 0px 10px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    margin: 0px 0px 0px 60px;
+}
+
+.menuButtons {
+    display: none;
+    flex-direction: row;
 }
 
 .vertList {
@@ -221,8 +262,8 @@ canvas {
     border-radius: 5px;
 
     position: absolute;
-    z-index: 9;
-    display: flex;
+    z-index: 8;
+    display: None;
     flex-direction: column;
     flex-wrap: wrap;
 }
@@ -237,7 +278,7 @@ canvas {
     border-radius: 8px;
     min-width: 300px;
     min-height: 200px;
-    z-index: 9;
+    z-index: 8;
 }
 
 #testdiv {

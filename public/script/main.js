@@ -389,7 +389,7 @@ function shadersMain()
 shadersMain();
 
 dragElement(document.getElementById("projectContent"));
-dragElement(document.getElementById("project-description"));
+dragElement(document.getElementById("aboutMe"));
 dragElement(document.getElementById("project-settings"));
 
 function dragElement(elmnt) {
@@ -424,7 +424,13 @@ function dragElement(elmnt) {
         pos4 = e.clientY;
         elmnt.style.top = clamp((elmnt.offsetTop - pos2), 5, (window.innerHeight - 5 - elmnt.offsetHeight)) + "px";
         elmnt.style.left = clamp((elmnt.offsetLeft - pos1), 70, (window.innerWidth - 5 - elmnt.offsetWidth)) + "px";
-
+        elmnt.style.zIndex = "9";
+        var siblings = getSiblings(elmnt);
+        for(let i = 0; i < siblings.length; i++)
+        {
+            if(siblings[i].style.zIndex == "9")
+                siblings[i].style.zIndex = "8";
+        }
     }
 
     function closeDragElement() {
@@ -432,17 +438,93 @@ function dragElement(elmnt) {
         document.onmousemove = null;
     }
 
+    function clamp (value, min, max) {
+        return Math.max(min, Math.min(value, max));
+    }
+
+    var getSiblings = function (elem) {
+        var descendants = elem.parentNode.children;
+        return Array.prototype.filter.call(descendants, function (sibling) {
+            return sibling !== elem;
+        });
+    };
+
 }
 
 
-function clamp (value, min, max) {
-    return Math.max(min, Math.min(value, max));
+
+var isMenuOpen = false;
+
+function toggleMenu()
+{
+    let menubtn = document.getElementById("menuBtn")
+    isMenuOpen = !isMenuOpen;
+    if(isMenuOpen)
+    {
+        menubtn.innerHTML = "«";
+        document.getElementById("menuButtons").style.display = "flex";
+    }
+    else
+    {
+        menubtn.innerHTML = "»";
+        document.getElementById("menuButtons").style.display = "none";
+    }
+}
+
+function openWindow(value)
+{
+    if(value == "Settings" )
+    {
+        document.getElementById("project-settings").style.display = "flex";
+    }
+    else if(value == "About")
+    {
+        document.getElementById("aboutMe").style.display = "flex";
+    }
+}
+
+
+//Project/window loading
+
+function loadProject(value)
+{
+    let content = document.getElementById("projectContent");
+    let desc = document.getElementById("aboutMe");
+    content.style.display = "flex";
+    if(value == 1)
+    {
+        changeImage("public/images/3D.png");
+        document.getElementById("projectName").innerHTML = "Project 1";
+    }
+
+    if(value == 2)
+    {
+        changeImage("public/images/Stars.png");
+        document.getElementById("projectName").innerHTML = "Project 2";
+    }
+
+    if(value == 3)
+    {
+        changeImage("public/images/shader1.png");
+        document.getElementById("projectName").innerHTML = "Project 3";
+    }
+}
+
+function changeImage(a)
+{
+    document.getElementById("contentImg").src = a;
 }
 
 
 
+function closeWindow(elem)
+{
+    elem.parentNode.parentNode.style.display = "none";
+}
 
 
+
+//Mobile and Desktop functionality
 function isMobileRegex() {
     const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
     return regex.test(navigator.userAgent);
@@ -453,13 +535,13 @@ function hasTouchSupport() {
 }
 
 if (isMobileRegex() || hasTouchSupport()) {
-    debugText.innerHTML = "window is mobile";
+    debugText.innerHTML = "device is mobile";
 
     //Run Mobile Javascript events here
 
 
 } else {
-    debugText.innerHTML = "window is NOT mobile";
+    debugText.innerHTML = "device is NOT mobile";
 
     //Run Desktop Javascript events here
 
