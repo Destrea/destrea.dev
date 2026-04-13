@@ -2,6 +2,7 @@ body {
     font-family: Tektur, sans-serif;
     background-color: black;
     margin: 0;
+    overflow: clip;
 }
 
 section {
@@ -13,17 +14,17 @@ section {
 
 h1 {
     position: absolute;
-    font-family: Tektur, sans-serif;
+    font-family: charm-bold;
     color: black;
     padding: 5px 10px 5px 10px;
     background-color: white;
-    border: 2px solid black;
+    border: 3px solid black;
     border-radius: 5px;
     margin: 20px 5px 2px 60px;
 }
 
 h2 {
-    font-family: Tektur, sans-serif;
+    font-family: charm-bold;
     font-size: 32px;
     color: #ffd159;
     writing-mode: vertical-lr;
@@ -35,7 +36,7 @@ h2 {
 }
 
 h3 {
-    font-family: Tektur, sans-serif;
+    font-family: charm-bold;
     color: #ffd159;
     font-size: 32px;
     margin: 0;
@@ -43,7 +44,8 @@ h3 {
 }
 
 h4 {
-    font-family: Tektur, sans-serif;
+    font-family: charm-bold;
+    text-shadow: -0px -0px 0 #fff, 0px 0px 0px #fff, -1px 1px 0px #fff, 1px 1px 1px #fff;
     color: #000000;
     font-size: 20px;
     margin: 0;
@@ -54,6 +56,7 @@ h5 {
     position: relative;
     font-family: Charm, cursive;
     writing-mode: vertical-lr;
+    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
     color: #000000;
     font-size: 40px;
     margin: 0;
@@ -80,13 +83,13 @@ button span {
 
 
 .button1 {
-    font-family: Tektur;
+    font-family: charm-bold;
     font-weight: bold;
     font-size: 32px;
     color: black;
     writing-mode: vertical-lr;
     background-color: white;
-    border: 2px solid black;
+    border: 3px solid black;
     border-radius: 5px;
     margin: 80px 10px 0px 0px;
     padding: 5px 5px 5px 5px;
@@ -192,6 +195,9 @@ canvas {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    background: grey;
+    padding: 0px;
+    border-bottom: 3px solid black;
 }
 
 .taskbarExit {
@@ -211,7 +217,7 @@ canvas {
 .projectContent {
 
     background-color: white;
-    border: 2px solid black;
+    border: 3px solid black;
     border-radius: 5px;
 
     position: absolute;

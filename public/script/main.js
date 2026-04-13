@@ -162,20 +162,11 @@ void main()
     //vec2 resolution = vec2(u_resolution.x, u_resolution.y);
     vec2 resolution = vec2(resolutionX, resolutionY);
 
-    const float PIXEL_SIZE = 10.0;
-    const float CELL_PIXEL_SIZE = 5.0 * PIXEL_SIZE;
-
-    float aspectRatio = u_resolution.x / u_resolution.y;
-
-    vec2 pixelID = floor(vec2(gl_FragCoord.xy) / PIXEL_SIZE);
-    vec2 cellID = floor(vec2(gl_FragCoord.xy) / CELL_PIXEL_SIZE);
-    vec2 cellCoord = cellID * CELL_PIXEL_SIZE;
-
-    vec2 uv = cellCoord/u_resolution * vec2(aspectRatio, 1.0);
+    float aspectRatio = resolution.x / resolution.y;
 
     //vec2 resolution = u_resolution;
     //Perlin Noise functions
-    vec2 p = (gl_FragCoord.xy/resolution.y) * 2.0 - 1.0;
+    vec2 p = (gl_FragCoord.xy/resolution.xy) * 2.0 - 1.0;
     vec3 xyz = vec3(p, 0.0);
     float n = color(xyz.xy * 4.0);
     vec3 finalColor = vec3(0.5 + 0.5 * vec3(n,n,n));
@@ -183,14 +174,14 @@ void main()
     //Dithering
 
     vec3 thresh = vec3(1.0/8.0);
-    int x = int(gl_FragCoord.x * resolution.x);
-    int y = int(gl_FragCoord.y * resolution.y);
-    float factor = getBayer4(x, y);
+    int x = int(gl_FragCoord.x) * 2;
+    int y = int(gl_FragCoord.y) * 2;
+    float factor = getBayer4(x % 4, y % 4);
     //float factor = float(bayer8[y * 8 + x]) / 64.0;
 
     finalColor = posterize(finalColor,16);
 
-    vec3 attempt = finalColor + (factor) - 0.07;
+    vec3 attempt = finalColor + (factor) + 0.2;
     vec3 pColor = vec3(0.0,0.0,0.0);
 
     //pColor = closestColor(palette, attempt, 6);
@@ -334,7 +325,7 @@ function shadersMain()
 
         gl.useProgram(program);
         gl.uniform1f(timeLocation, uTime / 1000.0);
-        gl.uniform2f(resLocation, canvas.width, canvas.width);
+        gl.uniform2f(resLocation, canvas.clientWidth, canvas.clientHeight);
 
         //Settings uniforms
         gl.uniform1f(intensityLoc, intensityValue);
@@ -350,11 +341,21 @@ function shadersMain()
 
     }
 
+    var debugText = document.getElementById("debug");
 
+    var widthDebug = document.getElementById("devWidth");
+    var heightDebug = document.getElementById("devHeight");
+
+    widthDebug.innerHTML = canvas.clientWidth;
+
+    heightDebug.innerHTML = canvas.clientHeight;
 
     function resizeCanvas(canvas) {
         const displayWidth = canvas.clientWidth;
         const displayHeight = canvas.clientHeight;
+
+        widthDebug.innerHTML = canvas.clientWidth;
+        heightDebug.innerHTML = canvas.clientHeight;
 
         const needResize = canvas.width !== displayWidth || canvas.height !== displayHeight;
         if(needResize)
@@ -389,13 +390,13 @@ shadersMain();
 
 dragElement(document.getElementById("projectContent"));
 dragElement(document.getElementById("project-description"));
-//dragElement(document.getElementById("project-settings"));
+dragElement(document.getElementById("project-settings"));
 
 function dragElement(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    if (document.getElementById(elmnt.id + "header")) {
+    if (document.getElementById(elmnt.id + "taskbar")) {
         // if present, the header is where you move the DIV from:
-        document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+        document.getElementById(elmnt.id + "taskbar").onmousedown = dragMouseDown;
     } else {
         // otherwise, move the DIV from anywhere inside the DIV:
         elmnt.onmousedown = dragMouseDown;
@@ -421,9 +422,8 @@ function dragElement(elmnt) {
         pos2 = pos4 - e.clientY;
         pos3 = e.clientX;
         pos4 = e.clientY;
-
-        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        elmnt.style.top = clamp((elmnt.offsetTop - pos2), 5, (window.innerHeight - 5 - elmnt.offsetHeight)) + "px";
+        elmnt.style.left = clamp((elmnt.offsetLeft - pos1), 70, (window.innerWidth - 5 - elmnt.offsetWidth)) + "px";
 
     }
 
@@ -435,3 +435,33 @@ function dragElement(elmnt) {
 }
 
 
+function clamp (value, min, max) {
+    return Math.max(min, Math.min(value, max));
+}
+
+
+
+
+
+function isMobileRegex() {
+    const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+    return regex.test(navigator.userAgent);
+}
+
+function hasTouchSupport() {
+    return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+}
+
+if (isMobileRegex() || hasTouchSupport()) {
+    debugText.innerHTML = "window is mobile";
+
+    //Run Mobile Javascript events here
+
+
+} else {
+    debugText.innerHTML = "window is NOT mobile";
+
+    //Run Desktop Javascript events here
+
+
+}
