@@ -224,7 +224,7 @@ void main()
 
 
 //Shaders settings javascript
-
+{
 var intensitySlider = document.getElementById("intensity");
 
 
@@ -251,7 +251,7 @@ speedSlider.oninput = function() {
     speedValue = this.value;
 }
 
-
+}
 
 function shadersMain()
 {
@@ -391,6 +391,8 @@ shadersMain();
 dragElement(document.getElementById("projectContent"));
 dragElement(document.getElementById("aboutMe"));
 dragElement(document.getElementById("project-settings"));
+dragElement(document.getElementById("projectsList"));
+dragElement(document.getElementById("navigationWindow"));
 
 function dragElement(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -424,13 +426,7 @@ function dragElement(elmnt) {
         pos4 = e.clientY;
         elmnt.style.top = clamp((elmnt.offsetTop - pos2), 5, (window.innerHeight - 5 - elmnt.offsetHeight)) + "px";
         elmnt.style.left = clamp((elmnt.offsetLeft - pos1), 70, (window.innerWidth - 5 - elmnt.offsetWidth)) + "px";
-        elmnt.style.zIndex = "9";
-        var siblings = getSiblings(elmnt);
-        for(let i = 0; i < siblings.length; i++)
-        {
-            if(siblings[i].style.zIndex == "9")
-                siblings[i].style.zIndex = "8";
-        }
+        foregroundWindow(elmnt);
     }
 
     function closeDragElement() {
@@ -442,6 +438,13 @@ function dragElement(elmnt) {
         return Math.max(min, Math.min(value, max));
     }
 
+
+
+}
+
+
+function foregroundWindow(elmnt)
+{
     var getSiblings = function (elem) {
         var descendants = elem.parentNode.children;
         return Array.prototype.filter.call(descendants, function (sibling) {
@@ -449,8 +452,16 @@ function dragElement(elmnt) {
         });
     };
 
-}
+    elmnt.style.zIndex = "9";
+    var siblings = getSiblings(elmnt);
+    for(let i = 0; i < siblings.length; i++)
+    {
+        if(siblings[i].style.zIndex == "9")
+            siblings[i].style.zIndex = "8";
+    }
 
+
+}
 
 
 var isMenuOpen = false;
@@ -475,11 +486,21 @@ function openWindow(value)
 {
     if(value == "Settings" )
     {
-        document.getElementById("project-settings").style.display = "flex";
+        let elmnt =  document.getElementById("project-settings");
+        elmnt.style.display = "flex";
+        foregroundWindow(elmnt);
     }
     else if(value == "About")
     {
-        document.getElementById("aboutMe").style.display = "flex";
+        let elmnt =  document.getElementById("aboutMe");
+        elmnt.style.display = "flex";
+        foregroundWindow(elmnt);
+    }
+    else if(value == "Projects")
+    {
+        let elmnt =  document.getElementById("projectsList");
+        elmnt.style.display = "flex";
+        foregroundWindow(elmnt);
     }
 }
 
@@ -489,7 +510,7 @@ function openWindow(value)
 function loadProject(value)
 {
     let content = document.getElementById("projectContent");
-    let desc = document.getElementById("aboutMe");
+    foregroundWindow(content);
     content.style.display = "flex";
     if(value == 1)
     {
@@ -519,13 +540,36 @@ function changeImage(a)
 
 function closeWindow(elem)
 {
+    if(elem.parentNode.parentNode.id == "navigationWindow")
+    {
+        document.cookie = "tutorialSeen=true";
+        console.log(document.cookie);
+    }
     elem.parentNode.parentNode.style.display = "none";
 }
+
+function cookieLoading()
+{
+    let loadedCookie = document.cookie;
+    console.log(loadedCookie.modalClosed)
+    if(!loadedCookie.includes("modalClosed=true"))
+    {
+        document.getElementById("modalWin").style.display = "flex";
+    }
+    if(!loadedCookie.includes("tutorialSeen=true"))
+    {
+        document.getElementById("navigationWindow").style.display = "flex";
+    }
+}
+
 
 function closeModal()
 {
     //TODO: Add functionality for saving a cookie so that this doesn't reappear on refresh.
     document.getElementById("modalWin").style.display = "none";
+    console.log("Modal Closed");
+    document.cookie = "modalClosed=true";
+    console.log(document.cookie);
 }
 
 
@@ -549,6 +593,4 @@ if (isMobileRegex() || hasTouchSupport()) {
     debugText.innerHTML = "device is NOT mobile";
 
     //Run Desktop Javascript events here
-
-
 }

@@ -1,0 +1,10 @@
+
+Create the About Me window information
+Create a project page for each project.
+Clean up the settings menu.
+Add a "Scaling" option to the settings, and for mobile.
+"clarify" the navigation tutorial
+
+
+Rework things to work correctly on mobile devices, or create a redirect to a mobile version of the website.
+Add settings/windows for storing/accepting cookies usage. JUST to be sure I dont get fined...

@@ -45,7 +45,7 @@ h3 {
 
 h4 {
     font-family: charm-bold;
-    text-shadow: -0px -0px 0 #fff, 0px 0px 0px #fff, -1px 1px 0px #fff, 1px 1px 1px #fff;
+    /*text-shadow: -0px -0px 0 #fff, 0px 0px 0px #fff, -1px 1px 0px #fff, 1px 1px 1px #fff;*/
     color: #000000;
     font-size: 20px;
     margin: 0;
@@ -120,7 +120,21 @@ button span {
     border-radius: 5px;
     margin: 2px;
     padding: 2px 5px 2px 5px;
-    text-align: center;
+
+}
+
+
+.buttonHyperlink {
+    background:none;
+    border:none;
+    padding: 0;
+
+    font-family: charm-bold;
+    font-size: 24px;
+    color: #069;
+    text-decoration: underline;
+    cursor: pointer;
+    text-align: left;
 }
 
 
@@ -195,12 +209,11 @@ canvas {
 
 
 .scroll-text-track {
-    position: relative;
+    position: inline-block;
     display: flex;
     flex-direction: column;
     height: 100%;
-   overflow: hidden;
-
+    width: 60px;
     padding-top: 1.2rem;
     gap: 1.2rem;
     animation: my-animation var(--speed, 10s) linear infinite
@@ -221,31 +234,6 @@ canvas {
 @keyframes my-animation {
     to {
         transform: translateY(-50%);
-    }
-}
-
-
-.scroll-text-side {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    height: 100%;
-    margin: 0px;
-    overflow: hidden;
-    animation: my-animation-horiz var(--speed, 10s) linear infinite
-    var(--direction, forwards);
-    user-select: none;
-}
-
-
-.scroll-text-side span {
-
-}
-
-
-@keyframes my-animation-horiz {
-    to {
-        transform: translateX(-50%);
     }
 }
 
@@ -281,17 +269,22 @@ canvas {
 
 .modalWindow {
 
-    position: fixed;
+    position: absolute;
     left: 50%;
     top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+
     background-color: white;
     border: 3px solid black;
     border-radius: 5px;
-    width: 400px;
-    height: 300px;
 
-    z-index: 15;
-    display: flex;
+    position: absolute;
+    z-index: 12;
+    display: None;
+    flex-direction: column;
+    flex-wrap: wrap;
 }
 
 .modalBackdrop{
