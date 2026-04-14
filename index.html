@@ -12,23 +12,23 @@
         <link href="https://fonts.googleapis.com/css2?family=Charm:wght@400;700&family=Tektur:wght@400..900&display=swap" rel="stylesheet">
 
     </head>
-    <body width="device-width">
-        <div id="modalWin" style="display: flex;">
+    <body width="device-width" onload="cookieLoading()">
+        <div id="modalWin" style="display: none;">
         <div class="modalBackdrop"></div>
-        <div id="modalDisclaimer" class="projectContent" style="top: 40%; left: 25%; display: flex; z-index:20; ">
-                <div id="aboutMetaskbar" class='taskbar'>
+        <div id="modalDisclaimer" class="modalWindow" style="display: flex; z-index:20; ">
+                <div id="modalTaskbar" class='taskbar'>
                     <h4 style="user-select: none;"> Disclaimer </h4>
-                    <!--<button onclick="closeWindow(this)" class="button button3"> X </button>   -->      <!-- X icon goes here -->
                 </div>
                 <div class="content-container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-                    <p> ▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌█▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐ </p>
+                    <!--<p> ▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌█▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐ </p> -->
                     <p> This website is a work in progress. </p>
                     <p> Be aware that content, layout and functionality are all currently subject to change, </p>
-                    <div> <button onclick="closeModal()" class="button button3"> Accept </button> </div>
-                    <p> ▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌█▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐ </p>
+                    <div> <button onclick="closeModal()" class="button button3"> Enter </button> </div>
+                     <!--<p> ▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌█▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐ </p> -->
                 </div>
             </div>
         </div>
+
         <div id="itemWindows">
 
             <div id="projectContent" class="projectContent" style="top: 142px; left: 352px;">
@@ -36,6 +36,7 @@
                     <h4 id="projectName" style="user-select: none;"> Project Name </h4>
                     <button onclick="closeWindow(this)" class="button button3"> X </button>        <!-- X icon goes here -->
                 </div>
+                 <h4 style="user-select: none; "> Project Name </h4>
                 <img id="contentImg" src="public/images/3D.png" alt="ffxiv" width="744" height="auto">
             </div>
 
@@ -71,6 +72,39 @@
                 </div>
             </div>
 
+            <div id="projectsList" class="projectContent" style="top: 500px; left: 70px;">
+                <div id="projectListtaskbar" class='taskbar'>
+                    <h4 style="user-select: none; "> Projects List </h4>
+                    <button onclick="closeWindow(this)" class="button button3"> X </button>         <!-- X icon goes here -->
+                </div>
+                <div class="content-container" style="display: flex; flex-direction: column; text-align: left;">
+                    <h4 style="font-size: 26px;">Student Projects</h4>
+                    <p style="display:inline-block; font-size:22px;"> • <button onclick="loadProject(1)" id="button1" class="buttonHyperlink" ">Tower of the Timelost</button></p>
+                    <p style="display:inline-block; font-size:22px;"> • <button onclick="loadProject(2)" id="button2" class="buttonHyperlink">Godot Shaders Exploration </button></p>
+                    <p style="display:inline-block; font-size:22px;"> • <button onclick="loadProject(3)" id="button3" class="buttonHyperlink">Capstone Project</button></p>
+                    <h4 style="font-size: 26px;">Personal Projects</h4>
+                    <p style="display:inline-block; font-size:22px;"> • <button onclick="loadProject(1)" id="button1" class="buttonHyperlink">Riichi Mahjong Calculator</button></p>
+                    <p style="display:inline-block; font-size:22px;"> • <button onclick="loadProject(2)" id="button2" class="buttonHyperlink">ReShade Shader Effects</button></p>
+                    <p style="display:inline-block; font-size:22px;"> • <button onclick="loadProject(3)" id="button3" class="buttonHyperlink">Interloper Game Engine</button></p>
+                    <p style="display:inline-block; font-size:22px;"> • <button onclick="loadProject(3)" id="button3" class="buttonHyperlink"> This Website</button></p>
+                </div>
+            </div>
+
+            <div id="navigationWindow" class="projectContent" style="top: 142px; left: 352px; display: none;">
+                <div id="projectContenttaskbar" class='taskbar'>
+                    <h4 id="projectName" style="user-select: none;"> Navigation Tutorial </h4>
+                    <button onclick="closeWindow(this)" class="button button3"> X </button>        <!-- X icon goes here -->
+                </div>
+                <div class="content-container" style="display: flex; flex-direction: column; text-align: left; padding: 5px;">
+                 <h4 style="user-select: none; padding: 0px;"> How to Navigate: </h4>
+                 <p style="font-size: 16px; max-width: 350px;"> • Click or tap the arrow at the top left of the screen, and select an option. This opens the associated window. </p>
+                 <p style="font-size: 16px; max-width: 350px;"> • Windows can be moved using a click and drag from their taskbar, and closed by clicking the <button class="button button3" style="font-size: 14px; padding: 0px 3px 0px 3px; margins: 0;"> X </button> in the top corner. </p>
+                 <p style="font-size: 16px; max-width: 350px;"> • All windows additionally have a <button class="button button3" style="font-size: 14px; padding: 0px 3px 0px 3px; margins: 0;"> ? </button> button in the taskbar that contains information about the window, or how to use it. </p>
+                 <p style="font-size: 16px; max-width: 350px;"> • This window can be re-opened by clicking "re-play tutorial" in the settings window. </p>
+                </div>
+
+            </div>
+
         </div>
 
         <div class= "overlay">
@@ -97,20 +131,22 @@
 
                 <div class="header-boxes">
                     <div class="menu">
-                        <button class="button button2"> _Projects </button>
+
                         <!-- popout menu sits in its own div-->
                         <div id="menuButtons" class="menuButtons">
+                            <button onclick="openWindow('Projects')" id="projectsMenu" class="button button2"> Projects </button>
                             <button onclick="openWindow('Settings')" id="settingsMenu" class="button button2"> Settings </button>
                             <button onclick="openWindow('About')" id="aboutMenu" class="button button2"> About </button>
                         </div>
                         <button onclick="toggleMenu()" id="menuBtn" class="button button2"> » </button>
                     </div>
-
+                    <!--
                     <div class="vertList">
                         <button onclick="loadProject(1)" id="button1" class="button button1">Project 1</button>
                         <button onclick="loadProject(2)" id="button2" class="button button1">Project 2</button>
                         <button onclick="loadProject(3)" id="button3" class="button button1">Project 3</button>
                     </div>
+                    -->
                 </div>
             </div>
         </div>
