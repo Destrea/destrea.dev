@@ -522,6 +522,11 @@ function closeWindow(elem)
     elem.parentNode.parentNode.style.display = "none";
 }
 
+function closeModal()
+{
+    //TODO: Add functionality for saving a cookie so that this doesn't reappear on refresh.
+    document.getElementById("modalWin").style.display = "none";
+}
 
 
 //Mobile and Desktop functionality

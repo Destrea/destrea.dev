@@ -2,7 +2,7 @@
 <html>
     <head>
         <!-- CSS -->
-        <link rel="stylesheet" href="public/css/test.css?v=4" type="text/css">
+        <link rel="stylesheet" href="public/css/test.css?v=5" type="text/css">
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +13,22 @@
 
     </head>
     <body width="device-width">
-
+        <div id="modalWin" style="display: flex;">
+        <div class="modalBackdrop"></div>
+        <div id="modalDisclaimer" class="projectContent" style="top: 40%; left: 25%; display: flex; z-index:20; ">
+                <div id="aboutMetaskbar" class='taskbar'>
+                    <h4 style="user-select: none;"> Disclaimer </h4>
+                    <!--<button onclick="closeWindow(this)" class="button button3"> X </button>   -->      <!-- X icon goes here -->
+                </div>
+                <div class="content-container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                    <p> ▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌█▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐ </p>
+                    <p> This website is a work in progress. </p>
+                    <p> Be aware that content, layout and functionality are all currently subject to change, </p>
+                    <div> <button onclick="closeModal()" class="button button3"> Accept </button> </div>
+                    <p> ▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌█▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐ </p>
+                </div>
+            </div>
+        </div>
         <div id="itemWindows">
 
             <div id="projectContent" class="projectContent" style="top: 142px; left: 352px;">
@@ -61,7 +76,7 @@
         <div class= "overlay">
 
             <canvas id= "canvas" width="100vw" height="100vh"></canvas>
-            <script src="public/script/main.js?v=4"></script>
+            <script src="public/script/main.js?v=5"></script>
 
             <div class= "overlay-content">
 
