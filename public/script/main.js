@@ -293,6 +293,7 @@ function shadersMain()
     //Settings hooks
     const intensityLoc = gl.getUniformLocation(program, "intensity");
     const speedLoc = gl.getUniformLocation(program, "wavespeed");
+
     //Regular uniforms
     const bayer4Location = gl.getUniformLocation(program, "bayer4");
     const timeLocation = gl.getUniformLocation(program, "uTime");
@@ -512,29 +513,163 @@ function loadProject(value)
     let content = document.getElementById("projectContent");
     foregroundWindow(content);
     content.style.display = "flex";
-    if(value == 1)
+    if(value == "s1")
     {
         changeImage("public/images/3D.png");
-        document.getElementById("projectName").innerHTML = "Project 1";
+        document.getElementById("projectName").innerHTML = "Tower of the Timelost";
+        document.getElementById("projectDate").innerHTML = "Date: August - December 2023";
+        document.getElementById("descrText").innerHTML = `'Tower of the Timelost' is a project that I completed in a group of three as part of a game programming course that I took as an elective for my computer science degree. This game was completed over the course of one semester, totaling 15 weeks.<br /><br />
+
+        The game itself was designed as a top-down roguelike, with the main goal being to acquire score by collecting valuabes and defeating enemies, while surviving until a time limit had been reached. The valuables you collected would also provide you with gold that could be spent on stat upgrades, to increase your damage, health, speed, and more.<br /><br />
+
+        The project utilized my university's custom game engine, written primarily in C++, using DirectXTK 12. While I had experience working in C++ from previous courses, and some experience working in the Unity game engine, this was a really great learning expeience for me. Being my first long-term group programming project, as well as my first project utilizing git version control, it taught me many valuable skills. In addition to this, using the custom game engine for development pushed me to learn game development on a much deeper level than I was with Unity.<br /><br />
+        The project itself used many licensed or open source assets, and some of the underlying systems were pre-made with the engine. Many of the game's final features are half-baked or buggy, but it was the first game that the three of us had actually invested time into developing. That said, I worked on a plethora of the final game's mechanics, and really grew my love for game development.<br /><br />
+
+        A list of the features I worked on include:<br />
+        - All of the game's UI design, both the graphics and the functionality.<br />
+        - The game's level design, and pseudo-procedural room selection.<br />
+        - The player's stats, including the scoring system and Time-keeping systems.<br />
+        - Interaction systems, for objects and the shop-keeper npc.<br />
+        - Level-switching and game states (Play, Pause, Main-menu, Game Over)<br /><br />
+        Source code examples for this project are available upon request, since I'm not sure if I'm able to freely distribute any/all of the engine's code.`;
     }
 
-    if(value == 2)
+    if(value == "s2")
     {
         changeImage("public/images/Stars.png");
-        document.getElementById("projectName").innerHTML = "Project 2";
+        document.getElementById("projectName").innerHTML = "Godot Shaders Exploration";
+        document.getElementById("projectDate").innerHTML = "Date: January - May 2025";
+        document.getElementById("descrText").innerHTML = `This project was completed as part of my "Topics in Game Development" course that I took as an elective for my computer science degree. Continuing beyond the Game Programming course, this course was focused around picking or technique in game development, and to spend an entire 15 week semester creating a project built around that concept. <br /><br />
+
+        For this project, I picked 'Shaders'. Having seen them mentioned many times in many places, I knew they were important in game development but I had no idea what went into creating them, or what exactly they did. <br /><br />
+
+        Through this semester, I created a project in the Godot Game engine that utilized a variety of different shader effects. Some of these were post-processing effects focused on the fragment shader, and others were material shaders that involved both the fragmen and vertex shaders. <br /><br />
+
+        Through this project, I created:<br />
+        - A simple water shader.<br />
+        - A palette-swap shader<br />
+        - Sobel Edge Detection, for object outlines<br />
+        - Color Posterization filter<br />
+        - A simple Bayer 4x4 dither.<br />
+        - An ice shader with refraction<br />
+        - A few different "fireball" style orbs and objects<br />
+        - A simple and amateurish Cel-Shader.<br /><br />
+
+
+        The project is rather messy, and it was sort of abandoned following the completion of the course, since I opted to move on to other projects of a similar vain.<br />
+
+        Source code can be found on my GitHub, by following the link above.<br /><br />
+
+        The main shaders are found within the files:<br />
+        "SimpleWater.gdshader"<br />
+        "refractiveIce.gdshader<"br />
+        "ToonShader.gdshader"<br />
+        "CelShader.gdshader"<br />
+        "fireball.gdshader"<br />
+        "MagicOrb.gdshader"<br />
+        `;
     }
 
-    if(value == 3)
+
+    if(value == "p1")
     {
         changeImage("public/images/shader1.png");
-        document.getElementById("projectName").innerHTML = "Project 3";
+        document.getElementById("projectName").innerHTML = "Mahjong Scoring Calculator";
+        document.getElementById("projectDate").innerHTML = "Date: August 2024 - August 2025";
+        document.getElementById("descrText").innerHTML = `<br />
+        `;
     }
+
+    if(value == "p2")
+    {
+        changeImage("public/images/shader1.png");
+        document.getElementById("projectName").innerHTML = "ReShade Shader Effects";
+        document.getElementById("projectDate").innerHTML = "Date: May 2025 - Current";
+        document.getElementById("descrText").innerHTML = `Following my time working on the "Godot Shaders Exploration" project in Spring 2025, I began exploring how I could continue learning about shader techniques within the context of games, closer to how it's done in actual graphics APIs, and with "quicker" visual feedback. <br /><br />
+
+        My next step up was creating shaders for ReShade. I'm an avid Final Fantasy XIV player, and I figured that ReShade would be a nice next step, since creating shaders for it would allow me to take more interesting screenshots, and allow me to enjoy my hard work as well! <br /><br />
+
+        To begin, I wanted to port my existing shaders from the Godot Shaders project into the ReShade language, which is similar in syntax to HLSL. This proved to be a process, as my outline shader uses the Sobel Operation which required access to the depth and normal buffers, which ReShade doesn't have direct access to, without preprocessing definitions. To solve this, I used an existing shader that comes packed with ReShade (DisplayDepth.fx) to help get everything set up properly. This shader can be found on the github repository as "DestreaFX_EdgeDetection.fx".<br /><br />
+
+        Alongside this I created a shader that provided a color-palette swap, and optionally a posterization pass, by taking in a user-determined color palette, and finding the closest color, using a simple difference calculation: distance = dot( final_color - palette[index], final_color - palette[index]). <br /> This, I found, isn't the most accurate way to determine which color is the closest, and I would implement in the next shader I'll talk about. This color-palette swapper can be found as "DestreaFX_ColorPalette.fx". <br /><br />
+
+        Lastly, my most recent shader was a many-in-one Ordered Dithering shader. This ended up being a much larger project, and became the "successor" to my color-palette swap shader, since it's executed much better. It uses a Bayer Ordered dither, adapted from Joel Yliluoma's implementation, to create many different types of effects. These range from two-color dithering (Custom colors, and Black/white), 8 color custom palette, a procedural monochrome palette, and my favorite, a "3-Bit RGB" dither, using the old 3-Bit color palette to re-create the original colors of the image. This is the shader I'm most proud of, and I still have ideas on what I can add to it, but for all intents and purposes, it's ready to be used! This dithering shader can be found as "DestreaFX_Dither.fx". <br /><br />
+
+        Once again, all of these shaders can be found at the github repository linked above, and I'd love to discuss any of them in more detail as well. <br />
+        `;
+    }
+
+    if(value == "p3")
+    {
+
+        //TODO: Add links to all of the Dependencies.
+        changeImage("public/images/shader1.png");
+        document.getElementById("projectName").innerHTML = "Interloper Game Engine";
+        document.getElementById("projectDate").innerHTML = "Date: August 2025 - Current";
+        document.getElementById("descrText").innerHTML = `The intent behind making the Interloper Game Engine was a goal to piggyback off my initial intent with making the ReShade shaders, to learn how a graphics API works, and what it's role is in game development. I began by learning OpenGL, using "learnOpenGL.com", and quickly found out that I loved the process. This then began a long term project of creating my own game engine so that I can make my own games in it. I've really loved working on this project alongside my college courses, anytime I've found the time to work on it. <br /> <br />
+
+        This is admittedly a very ambitious project, and after working on the project from August to November 2025 without any sort of plan or guidance, I found that my codebase was a mess and really needed a rework. So I decided to restructure everything before it got out of hand. To do so, I began by using the game engine development series by "The Cherno" on YouTube as a baseline for learning what I needed to know about each component of a game engine, and how you can go about creating them. Using this series and "Game Engine Architecture" by Jason Gregory, I've reworked the entire engine, and its features, to accomodate a typical 3D editor workflow, an Entity Component system, a (comparatively) streamlined rendering pipeline, and more. <br /> <br />
+
+        This game engine is definitely still a work in progress, and will continue to be for the forseeable future. That said, I've got a roadmap of features that I want completed before I begin developing a game using this engine, and any features that the game requires will be added to the engine to accomodate it. <br /> <br />
+
+        Currently, the engine features:<br />
+        - A 3D editor window <br />
+        - Entity Component System<br />
+        - Resource Management (Shaders, 3D Models/Meshes, Textures)<br />
+        - Input Management <br />
+        - Native C++ Scripting <br />
+
+
+
+
+        My current roadmap before developing a game still requires: <br />
+
+
+
+
+        Project Dependencies: <br />
+        - glfw3 <br />
+        - glm <br />
+        - stb_image.h <br />
+        - glad <br />
+        - Assimp <br />
+        - Entt <br />
+        - Dear ImGui <br />
+        - YAML cpp <br />
+
+
+
+
+        I'm having so much fun working on this engine, and I can't wait to begin developing games with it.<br />
+        It's entire codebase can be found on my github repository found linked above. The engine is compatible with Windows and Linux, with instructions on the repo for installation and building. <br />
+
+        <br />
+        `;
+    }
+
+
+    if(value == "p4")
+    {
+        //TODO: Add either an image for the website, or
+        changeImage("public/images/shader1.png");
+        document.getElementById("projectName").innerHTML = "Portfolio Website";
+        document.getElementById("projectDate").innerHTML = "Date: Feb 2026 - Current";
+        document.getElementById("descrText").innerHTML = `I created this website for two major reasons. First, I wanted a website where I could show off all of my portfolio projects, so that they're out in the open for anyone who's interested in any of my projects, and when they were made. Secondly, I wanted to toy around with HTML, CSS and JavaScript to create a website where I can create and host any tools or projects that would work really well hosted on a website, such as tools that utilize API calls to provide a service for anyone interested. <br /><br />
+
+        This website was made primarily using HTML, CSS and Javascript, and the background was made using a WebGL shader that I wrote, and it has options in the settings menu to manipulate the settings and play with. My goal for the design was make everything by hand to have complete control, and to take inspiration from late '90s and early 2000s design. My initial idea was to make each component of the website a window that can be manipulated and closed like you would a window on an Operating System. Fonts were chosen to follow this design as well. <br /><br />
+
+        As time goes on, more projects and features will be added, and some of the design may change, but the design ideology will remain the same going forward. Additionally, I plan to add a new window, or a new page that houses a development blog for my various project, with my game engine and game development being the main focus.<br />
+        `;
+    }
+
+
 }
 
 function changeImage(a)
 {
     document.getElementById("contentImg").src = a;
 }
+
 
 
 

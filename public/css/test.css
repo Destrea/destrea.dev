@@ -62,6 +62,14 @@ h5 {
     margin: 0;
 }
 
+h6 {
+     font-family: Charm, cursive;
+     color: #000000;
+     font-size: 22px;
+     padding-left: 7px;
+     margin: 0px 0px 0px 0px;
+}
+
 
 img {
     padding: 2px 2px 2px 2px;
@@ -73,6 +81,12 @@ p {
     font-size: 24px;
     margin: 5px;
     padding: 0px 20px 0px 0px;
+}
+
+p1 {
+    font-family: "Times New Roman", Times, serif;
+    font-size: 18px;
+    padding: 8px;
 }
 
 
@@ -299,11 +313,13 @@ canvas {
 
 
 .projectContent {
+    display: flex;
+    flex-direction: column;
 
     background-color: white;
     border: 3px solid black;
     border-radius: 5px;
-
+    max-width: 400px;
     position: absolute;
     z-index: 8;
     display: None;
@@ -312,16 +328,14 @@ canvas {
 }
 
 .project-description {
-    position: absolute;
     display: flex;
     flex-direction: column;
-    padding: 0px 0px 0px 25px;
-    background-color: white;
-    border: 2px solid black;
-    border-radius: 8px;
-    min-width: 300px;
-    min-height: 200px;
+    max-height: 350px;
+    overflow-y:scroll;
     z-index: 8;
+    border: solid black 2px;
+    border-radius: 5px;
+    margin: 5px;
 }
 
 #testdiv {

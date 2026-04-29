@@ -33,17 +33,22 @@
 
             <div id="projectContent" class="projectContent" style="top: 142px; left: 352px;">
                 <div id="projectContenttaskbar" class='taskbar'>
-                    <h4 id="projectName" style="user-select: none;"> Project Name </h4>
-                    <button onclick="closeWindow(this)" class="button button3"> X </button>        <!-- X icon goes here -->
+                    <h4 style="user-select: none;"> Project Information </h4>
+                    <button onclick="closeWindow(this)" class="button button3"> X </button>
                 </div>
-                 <h4 style="user-select: none; "> Project Name </h4>
-                <img id="contentImg" src="public/images/3D.png" alt="ffxiv" width="744" height="auto">
+                <h4 id="projectName" style="user-select: none;"> Project Name </h4>
+                <img id="contentImg" src="public/images/3D.png" alt="Image is missing"" width="372" height="auto">
+                <h6 id="projectDate"> Date: N/A </h6>
+                <h6> Description: </h6>
+                <div id="projectDescription" class="project-description">
+                        <p1 id="descrText"> Placeholder Text </p>
+                </div>
             </div>
 
             <div id="aboutMe" class="projectContent" style="top: 275px; left: 70px;">
                 <div id="aboutMetaskbar" class='taskbar'>
                     <h4 style="user-select: none;"> aboutMe </h4>
-                    <button onclick="closeWindow(this)" class="button button3"> X </button>         <!-- X icon goes here -->
+                    <button onclick="closeWindow(this)" class="button button3"> X </button>
                 </div>
                 <div class="content-container">
                     <p>Testing Text 123 </p>
@@ -75,25 +80,25 @@
             <div id="projectsList" class="projectContent" style="top: 500px; left: 70px;">
                 <div id="projectListtaskbar" class='taskbar'>
                     <h4 style="user-select: none; "> Projects List </h4>
-                    <button onclick="closeWindow(this)" class="button button3"> X </button>         <!-- X icon goes here -->
+                    <button onclick="closeWindow(this)" class="button button3"> X </button>
                 </div>
                 <div class="content-container" style="display: flex; flex-direction: column; text-align: left;">
                     <h4 style="font-size: 26px;">Student Projects</h4>
-                    <p style="display:inline-block; font-size:22px;"> • <button onclick="loadProject(1)" id="button1" class="buttonHyperlink" ">Tower of the Timelost</button></p>
-                    <p style="display:inline-block; font-size:22px;"> • <button onclick="loadProject(2)" id="button2" class="buttonHyperlink">Godot Shaders Exploration </button></p>
-                    <p style="display:inline-block; font-size:22px;"> • <button onclick="loadProject(3)" id="button3" class="buttonHyperlink">Capstone Project</button></p>
+                    <p style="display:inline-block; font-size:22px;"> • <button onclick="loadProject('s1')" id="button1" class="buttonHyperlink" ">Tower of the Timelost</button></p>
+                    <p style="display:inline-block; font-size:22px;"> • <button onclick="loadProject('s2')" id="button2" class="buttonHyperlink">Godot Shaders Exploration </button></p>
+                    <!--<p style="display:inline-block; font-size:22px;"> • <button onclick="loadProject(3)" id="button3" class="buttonHyperlink">Capstone Project</button></p> -->
                     <h4 style="font-size: 26px;">Personal Projects</h4>
-                    <p style="display:inline-block; font-size:22px;"> • <button onclick="loadProject(1)" id="button1" class="buttonHyperlink">Riichi Mahjong Calculator</button></p>
-                    <p style="display:inline-block; font-size:22px;"> • <button onclick="loadProject(2)" id="button2" class="buttonHyperlink">ReShade Shader Effects</button></p>
-                    <p style="display:inline-block; font-size:22px;"> • <button onclick="loadProject(3)" id="button3" class="buttonHyperlink">Interloper Game Engine</button></p>
-                    <p style="display:inline-block; font-size:22px;"> • <button onclick="loadProject(3)" id="button3" class="buttonHyperlink"> This Website</button></p>
+                    <p style="display:inline-block; font-size:22px;"> • <button onclick="loadProject('p1')" id="button1" class="buttonHyperlink">Riichi Mahjong Calculator</button></p>
+                    <p style="display:inline-block; font-size:22px;"> • <button onclick="loadProject('p2')" id="button2" class="buttonHyperlink">ReShade Shader Effects</button></p>
+                    <p style="display:inline-block; font-size:22px;"> • <button onclick="loadProject('p3')" id="button3" class="buttonHyperlink">Interloper Game Engine</button></p>
+                    <p style="display:inline-block; font-size:22px;"> • <button onclick="loadProject('p4')" id="button3" class="buttonHyperlink"> Portfolio Website</button></p>
                 </div>
             </div>
 
             <div id="navigationWindow" class="projectContent" style="top: 70px; left: 70px; display: none;">
                 <div id="projectContenttaskbar" class='taskbar'>
                     <h4 id="projectName" style="user-select: none;"> Navigation Tutorial </h4>
-                    <button onclick="closeWindow(this)" class="button button3"> X </button>        <!-- X icon goes here -->
+                    <button onclick="closeWindow(this)" class="button button3"> X </button>
                 </div>
                 <div class="content-container" style="display: flex; flex-direction: column; text-align: left; padding: 5px;">
                  <h4 style="user-select: none; padding: 0px;"> How to Navigate: </h4>
@@ -113,7 +118,6 @@
             <script src="public/script/main.js?v=7"></script>
 
             <div class= "overlay-content">
-
                 <div class="animWrapper">
                     <div class="scroll-text">
                         <div class="scroll-text-track">
@@ -131,7 +135,6 @@
 
                 <div class="header-boxes">
                     <div class="menu">
-
                         <!-- popout menu sits in its own div-->
                         <div id="menuButtons" class="menuButtons">
                             <button onclick="openWindow('Projects')" id="projectsMenu" class="button button2"> Projects </button>
@@ -140,13 +143,6 @@
                         </div>
                         <button onclick="toggleMenu()" id="menuBtn" class="button button2"> » </button>
                     </div>
-                    <!--
-                    <div class="vertList">
-                        <button onclick="loadProject(1)" id="button1" class="button button1">Project 1</button>
-                        <button onclick="loadProject(2)" id="button2" class="button button1">Project 2</button>
-                        <button onclick="loadProject(3)" id="button3" class="button button1">Project 3</button>
-                    </div>
-                    -->
                 </div>
             </div>
         </div>
