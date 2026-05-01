@@ -515,7 +515,7 @@ function loadProject(value)
     content.style.display = "flex";
     if(value == "s1")
     {
-        changeImage("public/images/3D.png");
+        changeImage("public/images/Timelost/Timelost1.png");
         document.getElementById("projectName").innerHTML = "Tower of the Timelost";
         document.getElementById("projectDate").innerHTML = "Date: August - December 2023";
         document.getElementById("descrText").innerHTML = `'Tower of the Timelost' is a project that I completed in a group of three as part of a game programming course that I took as an elective for my computer science degree. This game was completed over the course of one semester, totaling 15 weeks.<br /><br />
@@ -536,7 +536,7 @@ function loadProject(value)
 
     if(value == "s2")
     {
-        changeImage("public/images/Stars.png");
+        changeImage("public/images/GodotShaders/GodotShader1.png");
         document.getElementById("projectName").innerHTML = "Godot Shaders Exploration";
         document.getElementById("projectDate").innerHTML = "Date: January - May 2025";
         document.getElementById("descrText").innerHTML = `This project was completed as part of my "Topics in Game Development" course that I took as an elective for my computer science degree. Continuing beyond the Game Programming course, this course was focused around picking or technique in game development, and to spend an entire 15 week semester creating a project built around that concept. <br /><br />
@@ -573,16 +573,25 @@ function loadProject(value)
 
     if(value == "p1")
     {
-        changeImage("public/images/shader1.png");
+        changeImage("public/images/ScoringTool/ScoringTool1.png");
         document.getElementById("projectName").innerHTML = "Mahjong Scoring Calculator";
-        document.getElementById("projectDate").innerHTML = "Date: August 2024 - August 2025";
-        document.getElementById("descrText").innerHTML = `<br />
+        document.getElementById("projectDate").innerHTML = "Date: January 2025 - August 2025";
+        document.getElementById("descrText").innerHTML = `In January 2025 I was working in the Godot Game engine, and I decided that I wanted to learn how it's UI features worked. Alongside this, I had been learning to play Riichi Mahjong for roughly 6 months. This is a game with notoriously complex rules, and a very long list of scoring hands known as "Yaku" that reward you with points upon their formation. These Yaku can be combined with one another, and contribute different amounts of score. Because of this, I figured that making a scoring calculator would be a great test of learning Godot's UI features, as well as learning the rules and scoring for Riichi Mahjong more thoroughly. <br /><br />
+
+        This calculator handles all of the most common Yaku, uses an algorithm I created to detect them accurately from a selected hand of 14 tiles, and can output roughly what the final score of the hand will be. All of the standard Yaku that dont rely on "Waits" are implemented properly, and can be combined with others. The two standard Yaku that isn't currently implemented as a result is "Pinfu", as it requires a Ryanmen wait. Aside from this, there is one other standard yaku and one high scoring "Yakuman" that arent handled correctly either, since the algorithm doesnt currently support more than 14 tiles, causing it to not be compatible with detecting "kan" (quad) calls. As a result, it can't detect Sankantsu (three quads) and Suukantsu (four quads). <br /><br />
+
+        Aside from these stipulations, the calculator handles everything else procedurally and outputs an itemized list of the Yaku it detects, their "han" value, and the final calculated score that the hand is valued at. I'd like to return to this project at some point, and maybe remake it in Javascript instead so that it can be hosted here, and support the missing features, and fix any remaining inconsistencies with it's scoring, since it's still got some weird edge cases. <br /><br />
+
+        As with my other projects, you can find this Mahjong Scoring Calculator in a repository on my github, and it comes with pre-compiled Windows and linux builds, or it can be compiled or used manually by opening the project file directly in the free Godot Game engine.
+
+
+        <br />
         `;
     }
 
     if(value == "p2")
     {
-        changeImage("public/images/shader1.png");
+        changeImage("public/images/ReShade/Shader3BitClose.png");
         document.getElementById("projectName").innerHTML = "ReShade Shader Effects";
         document.getElementById("projectDate").innerHTML = "Date: May 2025 - Current";
         document.getElementById("descrText").innerHTML = `Following my time working on the "Godot Shaders Exploration" project in Spring 2025, I began exploring how I could continue learning about shader techniques within the context of games, closer to how it's done in actual graphics APIs, and with "quicker" visual feedback. <br /><br />
@@ -603,7 +612,7 @@ function loadProject(value)
     {
 
         //TODO: Add links to all of the Dependencies.
-        changeImage("public/images/shader1.png");
+        changeImage("public/images/GameEngine/Engine1.png");
         document.getElementById("projectName").innerHTML = "Interloper Game Engine";
         document.getElementById("projectDate").innerHTML = "Date: August 2025 - Current";
         document.getElementById("descrText").innerHTML = `The intent behind making the Interloper Game Engine was a goal to piggyback off my initial intent with making the ReShade shaders, to learn how a graphics API works, and what it's role is in game development. I began by learning OpenGL, using "learnOpenGL.com", and quickly found out that I loved the process. This then began a long term project of creating my own game engine so that I can make my own games in it. I've really loved working on this project alongside my college courses, anytime I've found the time to work on it. <br /> <br />
@@ -619,12 +628,12 @@ function loadProject(value)
         - Input Management <br />
         - Native C++ Scripting <br />
 
-
-
-
         My current roadmap before developing a game still requires: <br />
-
-
+        - Complete scene serialization and deserialization <br />
+        - Flying Editor camera, and 3D gizmos <br />
+        - 3D collision detection and resolution <br />
+        - Simple raycast functionality <br />
+        - Audio management <br />
 
 
         Project Dependencies: <br />
@@ -651,7 +660,7 @@ function loadProject(value)
     if(value == "p4")
     {
         //TODO: Add either an image for the website, or
-        changeImage("public/images/shader1.png");
+        changeImage("public/images/Website1.png");
         document.getElementById("projectName").innerHTML = "Portfolio Website";
         document.getElementById("projectDate").innerHTML = "Date: Feb 2026 - Current";
         document.getElementById("descrText").innerHTML = `I created this website for two major reasons. First, I wanted a website where I could show off all of my portfolio projects, so that they're out in the open for anyone who's interested in any of my projects, and when they were made. Secondly, I wanted to toy around with HTML, CSS and JavaScript to create a website where I can create and host any tools or projects that would work really well hosted on a website, such as tools that utilize API calls to provide a service for anyone interested. <br /><br />
@@ -671,14 +680,15 @@ function changeImage(a)
 }
 
 
-
-
 function closeWindow(elem)
 {
     if(elem.parentNode.parentNode.id == "navigationWindow")
     {
-        document.cookie = "tutorialSeen=true";
-        console.log(document.cookie);
+        let loadedCookie = document.cookie;
+        if(loadedCookie.cookiesAccepted)
+        {
+            document.cookie = "tutorialSeen=true";
+        }
     }
     elem.parentNode.parentNode.style.display = "none";
 }
@@ -700,12 +710,20 @@ function cookieLoading()
 
 function closeModal()
 {
-    //TODO: Add functionality for saving a cookie so that this doesn't reappear on refresh.
     document.getElementById("modalWin").style.display = "none";
-    console.log("Modal Closed");
     document.cookie = "modalClosed=true";
-    console.log(document.cookie);
+    document.cookie = "cookiesAccepted=true";
 }
+
+function declineCookies()
+{
+    document.getElementById("modalWin").style.display = "none";
+}
+
+
+
+
+
 
 
 //Mobile and Desktop functionality

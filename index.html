@@ -2,7 +2,7 @@
 <html>
     <head>
         <!-- CSS -->
-        <link rel="stylesheet" href="public/css/test.css?v=7" type="text/css">
+        <link rel="stylesheet" href="public/css/test.css?v=0.9" type="text/css">
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,18 +15,34 @@
     <body width="device-width" onload="cookieLoading()">
         <div id="modalWin" style="display: none;">
         <div class="modalBackdrop"></div>
+        <!--
         <div id="modalDisclaimer" class="modalWindow" style="display: flex; z-index:20; ">
                 <div id="modalTaskbar" class='taskbar'>
                     <h4 style="user-select: none;"> Disclaimer </h4>
                 </div>
                 <div class="content-container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-                    <!--<p> ▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌█▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐ </p> -->
+                    <!--<p> ▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌█▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐ </p>
                     <p> This website is a work in progress. </p>
                     <p> Be aware that content, layout and functionality are all currently subject to change, </p>
                     <div> <button onclick="closeModal()" class="button button3"> Enter </button> </div>
-                     <!--<p> ▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌█▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐ </p> -->
+                     <!--<p> ▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌█▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐ </p>
                 </div>
             </div>
+        -->
+
+
+        <div id="modalDisclaimer" class="modalWindow" style="display: flex; z-index:19; ">
+                <div id="modalTaskbar" class='taskbar'>
+                    <h4 style="user-select: none;"> Disclaimer </h4>
+                </div>
+                <div class="content-container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                    <p> This website uses cookies to save settings relating to: </p>
+                    <p> Website pop-ups such as the WIP disclaimer, the navigation help, and options in the "settings menu". </p>
+                    <p> Please optionally accept cookies for the best experience. </p>
+                    <div> <button onclick="closeModal()" class="button button3"> Accept Cookies </button> <button onclick="closeModal()" class="button button3"> Decline Cookies </button></div>
+                </div>
+            </div>
+        </div>
         </div>
 
         <div id="itemWindows">
@@ -37,7 +53,7 @@
                     <button onclick="closeWindow(this)" class="button button3"> X </button>
                 </div>
                 <h4 id="projectName" style="user-select: none;"> Project Name </h4>
-                <img id="contentImg" src="public/images/3D.png" alt="Image is missing"" width="372" height="auto">
+                <img id="contentImg" src="public/images/3D.png" alt="Image is missing"" width="400" height="auto">
                 <h6 id="projectDate"> Date: N/A </h6>
                 <h6> Description: </h6>
                 <div id="projectDescription" class="project-description">
@@ -47,11 +63,18 @@
 
             <div id="aboutMe" class="projectContent" style="top: 275px; left: 70px;">
                 <div id="aboutMetaskbar" class='taskbar'>
-                    <h4 style="user-select: none;"> aboutMe </h4>
+                    <h4 style="user-select: none;"> aboutMe.txt </h4>
                     <button onclick="closeWindow(this)" class="button button3"> X </button>
                 </div>
-                <div class="content-container">
-                    <p>Testing Text 123 </p>
+                <div class="content-container" style="display: flex; flex-direction: column; text-align: left; padding: 5px;">
+                    <h4>Welcome! </h4>
+                    <p2>I'm Destrea, and I'm a programmer with a passion for C++ Game Development, GLSL/HLSL Graphics/Shader programming, OpenGL Game Engine Development, and I occasionally dabble in Web development. </p2>
+                    <p2>I mainly focus on C and C++ development, in the realm of OpenGL, but I also have experience working with HTML, CSS and JavaScript. </p2>
+                    <p2>Here on my website you can find and view my many different projects, including screenshots and descriptions of eachone, and typically a link to the GitHub where you can find the source code. </p2>
+                    <p2>This website in the future will also house a development blog for any of my future projects, but It'll mainly be focused on my Game and Game Engine Development. </p2>
+                    <p2>You can find me on: </p2>
+                    <p2>Bluesky: @destrea.dev </p2>
+                    <p2>GitHub:  https://github.com/Destrea </p2>
                 </div>
             </div>
 
@@ -61,17 +84,19 @@
                     <button onclick="closeWindow(this)" class="button button3"> X </button>
                 </div>
                 <div class="content-container">
-                    <p> Perlin Intensity </p>
+                    <p> [Background Settings] </p>
+                    <p1> Perlin Intensity </p1>
                     <div class="slidecontainer">
                         <input type="range" min="-100" max="100" value="50" class="slider" id="intensity">
                         <span id="intVal" style="font-weight:bold; font-size:18; color:black"> 25 </span>
                     </div>
-                    <p> Animation Speed </p>
+                    <p1> Animation Speed </p1>
                     <div class="slidecontainer">
                         <input type="range" min="1" max="100" value="50" class="slider" id="speed">
                         <span id="spdVal" style="font-weight:bold; font-size:18; color:black"> 25 </span>
                     </div>
-                    <br>
+                    <br />
+                    <p> [Debug Information] </p>
                     <p id="debugText" style="color: red;">Testing Text 123 </p>
                     <p style="display: inline;"> Res: </p><span id="devWidth" style="font-size: 20px;"> WidthVal </span> x <span id="devHeight" style="font-size: 20px;"> HeightVal</span>
                 </div>
@@ -104,8 +129,12 @@
                  <h4 style="user-select: none; padding: 0px;"> How to Navigate: </h4>
                  <p style="font-size: 16px; max-width: 350px;"> • Click or tap the <button class="button button3" style="font-size: 18px; padding: 0px 3px 0px 3px; margins: 0;"> » </button> at the top left of the screen, and select an option. This opens the associated window. </p>
                  <p style="font-size: 16px; max-width: 350px;"> • Windows can be moved using a click and drag from their taskbar, and closed by clicking the <button class="button button3" style="font-size: 14px; padding: 0px 3px 0px 3px; margins: 0;"> X </button> in the top corner. </p>
+                 <p style="font-size: 16px; max-width: 350px;"> • All images are best viewed in their full resolution. Be sure to right click them and "Open Image in new tab." to see all their detail!  </p>
+
+                 <!--
                  <p style="font-size: 16px; max-width: 350px;"> • All windows additionally have a <button class="button button3" style="font-size: 14px; padding: 0px 3px 0px 3px; margins: 0;"> ? </button> button in the taskbar that contains information about the window, or how to use it. </p>
                  <p style="font-size: 16px; max-width: 350px;"> • This window can be re-opened by clicking "re-play tutorial" in the settings window. </p>
+                 -->
                 </div>
 
             </div>
@@ -115,19 +144,19 @@
         <div class= "overlay">
 
             <canvas id= "canvas" width="100vw" height="100vh"></canvas>
-            <script src="public/script/main.js?v=7"></script>
+            <script src="public/script/main.js?v=0.9"></script>
 
             <div class= "overlay-content">
                 <div class="animWrapper">
                     <div class="scroll-text">
                         <div class="scroll-text-track">
-                            <span><h5>╔[all content designed by destrea]╗</h5></span>
+                            <span><h5>all content original</h5></span>
                             <span><h5>«»</h5></span>
-                            <span><h5>╔[all content designed by destrea]╗</h5></span>
+                            <span><h5>all content original</h5></span>
                             <span><h5>«»</h5></span>
-                            <span><h5>╔[all content designed by destrea]╗</h5></span>
+                            <span><h5>all content original</h5></span>
                             <span><h5>«»</h5></span>
-                            <span><h5>╔[all content designed by destrea]╗</h5></span>
+                            <span><h5>all content original</h5></span>
                             <span><h5>«»</h5>
                         </div>
                     </div>
@@ -146,7 +175,6 @@
                 </div>
             </div>
         </div>
-
     </body>
     <footer> <h1> test Text </h1> </footer>
 </html>
