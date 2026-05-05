@@ -517,7 +517,7 @@ function openWindow(value)
     const GodotImages = ["public/images/GodotShaders/GodotShader1.png","public/images/GodotShaders/GodotShader2.png","public/images/GodotShaders/GodotShader3.png","public/images/GodotShaders/GodotShader4.png","public/images/GodotShaders/GodotShader5.png"];
 
     const MahjongImages = ["public/images/ScoringTool/ScoringTool1.png","public/images/ScoringTool/ScoringTool2.png"];
-    const ReShadeImages = ["public/images/ReShade/3D.png","public/images/ReShade/Banner.png","public/images/ReShade/shader1.png","public/images/ReShade/Shader2Tone.png","public/images/ReShade/Shader3BitClose.png","public/images/ReShade/ShaderBW.png","public/images/ReShade/ShaderLines.png","public/images/ReShade/ShaderProc.png","public/images/ReShade/Stars.png",];
+    const ReShadeImages = ["public/images/ReShade/3D.png","public/images/ReShade/shader1.png","https://raw.githubusercontent.com/Destrea/destrea.dev/183aed14637003e76756dd548b919982abdaa8df/public/images/ReShade/Banner.png","https://raw.githubusercontent.com/Destrea/destrea.dev/183aed14637003e76756dd548b919982abdaa8df/public/images/ReShade/ShaderLines.png","public/images/ReShade/Shader2Tone.png","public/images/ReShade/Shader3BitClose.png","public/images/ReShade/ShaderBW.png","public/images/ReShade/ShaderProc.png","public/images/ReShade/Stars.png",];
     const EngineImages = ["public/images/GameEngine/Engine1.png"];
     const WebsiteImages = ["public/images/Website/Website1.png"];
 
