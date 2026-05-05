@@ -593,7 +593,7 @@ function loadProject(value)
         imageIndex = 0;
         showSlides(imageIndex, currentProject);
         //changeImage("public/images/Timelost/Timelost1.png");
-
+        document.getElementById("projectGithub").style.display = "none";
         document.getElementById("projectName").innerHTML = "Tower of the Timelost";
         document.getElementById("projectDate").innerHTML = "Date: August - December 2023";
         document.getElementById("descrText").innerHTML = `'Tower of the Timelost' is a project that I completed in a group of three as part of a game programming course that I took as an elective for my computer science degree. This game was completed over the course of one semester, totaling 15 weeks.<br /><br />
@@ -610,6 +610,10 @@ function loadProject(value)
         - Interaction systems, for objects and the shop-keeper npc.<br />
         - Level-switching and game states (Play, Pause, Main-menu, Game Over)<br /><br />
         Source code examples for this project are available upon request, since I'm not sure if I'm able to freely distribute any/all of the engine's code.`;
+    }
+    else
+    {
+         document.getElementById("projectGithub").style.display = "flex";
     }
 
     if(value == "s2")
@@ -659,6 +663,7 @@ function loadProject(value)
         imageIndex = 0;
         showSlides(imageIndex, currentProject);
         //changeImage("public/images/ScoringTool/ScoringTool1.png");
+        changeLink("https://github.com/Destrea/Mahjong-Scoring-Tool");
         document.getElementById("projectName").innerHTML = "Mahjong Scoring Calculator";
         document.getElementById("projectDate").innerHTML = "Date: January 2025 - August 2025";
         document.getElementById("descrText").innerHTML = `In January 2025 I was working in the Godot Game engine, and I decided that I wanted to learn how it's UI features worked. Alongside this, I had been learning to play Riichi Mahjong for roughly 6 months. This is a game with notoriously complex rules, and a very long list of scoring hands known as "Yaku" that reward you with points upon their formation. These Yaku can be combined with one another, and contribute different amounts of score. Because of this, I figured that making a scoring calculator would be a great test of learning Godot's UI features, as well as learning the rules and scoring for Riichi Mahjong more thoroughly. <br /><br />
@@ -680,6 +685,7 @@ function loadProject(value)
         imageIndex = 0;
         showSlides(imageIndex, currentProject);
         //changeImage("public/images/ReShade/Shader3BitClose.png");
+        changeLink("https://github.com/Destrea/DestreaFX");
         document.getElementById("projectName").innerHTML = "ReShade Shader Effects";
         document.getElementById("projectDate").innerHTML = "Date: May 2025 - Current";
         document.getElementById("descrText").innerHTML = `Following my time working on the "Godot Shaders Exploration" project in Spring 2025, I began exploring how I could continue learning about shader techniques within the context of games, closer to how it's done in actual graphics APIs, and with "quicker" visual feedback. <br /><br />
@@ -705,6 +711,7 @@ function loadProject(value)
 
         //TODO: Add links to all of the Dependencies.
         //changeImage("public/images/GameEngine/Engine1.png");
+        changeLink("https://github.com/Destrea/Interloper-Engine");
         document.getElementById("projectName").innerHTML = "Interloper Game Engine";
         document.getElementById("projectDate").innerHTML = "Date: August 2025 - Current";
         document.getElementById("descrText").innerHTML = `The intent behind making the Interloper Game Engine was a goal to piggyback off my initial intent with making the ReShade shaders, to learn how a graphics API works, and what it's role is in game development. I began by learning OpenGL, using "learnOpenGL.com", and quickly found out that I loved the process. This then began a long term project of creating my own game engine so that I can make my own games in it. I've really loved working on this project alongside my college courses, anytime I've found the time to work on it. <br /> <br />
