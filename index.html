@@ -2,7 +2,7 @@
 <html>
     <head>
         <!-- CSS -->
-        <link rel="stylesheet" href="public/css/test.css?v=0.91" type="text/css">
+        <link rel="stylesheet" href="public/css/test.css?v=0.93" type="text/css">
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,27 +11,16 @@
         <!-- Charm font -->
         <link href="https://fonts.googleapis.com/css2?family=Charm:wght@400;700&family=Tektur:wght@400..900&display=swap" rel="stylesheet">
 
+        <!-- Icon and Page Name -->
+        <title> [ destrea.dev ] -- [ home ] </title>
+        <link rel="icon" type="image/x-icon" href="public/images/smallLogo.png">
+
     </head>
     <body width="device-width" onload="cookieLoading()">
         <div id="modalWin" style="display: none;">
-        <div class="modalBackdrop"></div>
-        <!--
-        <div id="modalDisclaimer" class="modalWindow" style="display: flex; z-index:20; ">
-                <div id="modalTaskbar" class='taskbar'>
-                    <h4 style="user-select: none;"> Disclaimer </h4>
-                </div>
-                <div class="content-container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-                    <!--<p> ▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌█▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐ </p>
-                    <p> This website is a work in progress. </p>
-                    <p> Be aware that content, layout and functionality are all currently subject to change, </p>
-                    <div> <button onclick="closeModal()" class="button button3"> Enter </button> </div>
-                     <!--<p> ▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌█▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐▐ </p>
-                </div>
-            </div>
-        -->
+            <div class="modalBackdrop"></div>
 
-
-        <div id="modalDisclaimer" class="modalWindow" style="display: flex; z-index:19; ">
+            <div id="modalDisclaimer" class="modalWindow" style="display: none; z-index:19; ">
                 <div id="modalTaskbar" class='taskbar'>
                     <h4 style="user-select: none;"> Disclaimer </h4>
                 </div>
@@ -47,15 +36,25 @@
 
         <div id="itemWindows">
 
-            <div id="projectContent" class="projectContent" style="top: 142px; left: 352px;">
+            <div id="projectContent" class="projectContent" style="top: 142px; left: 352px; display: none;">
                 <div id="projectContenttaskbar" class='taskbar'>
                     <h4 style="user-select: none;"> Project Information </h4>
                     <button onclick="closeWindow(this)" class="button button3"> X </button>
                 </div>
-                <h4 id="projectName" style="user-select: none;"> Project Name </h4>
-                <img id="contentImg" src="public/images/3D.png" alt="Image is missing"" width="400" height="auto">
+                    <h4 id="projectName" style="user-select: none; padding-bottom: 5px; text-decoration: underline;"> Project Name </h4>
+                <div id="gallery" class="gallery" style="display: flex;">
+                    <button onclick="nextImage(-1)" id="menuBtn" class="button button3" style="margins: 0px; font-size: 32px;" height="100%"> « </button>
+                    <div class="image-box" title="Click to view fullscreen!" onClick="imageModal()">
+                        <img id="contentImg" src="public/images/ReShade/3D.png" alt="Image is missing" width="400" height="auto">
+                    </div>
+                    <button onclick="nextImage(1)" id="menuBtn" class="button button3" style="margins: 0px; font-size: 32px;"> » </button>
+                </div>
                 <h6 id="projectDate"> Date: N/A </h6>
-                <h6> Description: </h6>
+                <div style="display: flex; flex-direction: row;">
+                    <h6> About this project: </h6>
+                    <a id="projectGithub" target="_blank" href="https://github.com/Destrea"><img  src="public/icons/GitHub_Invertocat_Black.png" width="25" height="25" style="border-color: white; "></a>
+                  </div>
+
                 <div id="projectDescription" class="project-description">
                         <p1 id="descrText"> Placeholder Text </p>
                 </div>
@@ -68,13 +67,15 @@
                 </div>
                 <div class="content-container" style="display: flex; flex-direction: column; text-align: left; padding: 5px;">
                     <h4>Welcome! </h4>
-                    <p2>I'm Destrea, and I'm a programmer with a passion for C++ Game Development, GLSL/HLSL Graphics/Shader programming, OpenGL Game Engine Development, and I occasionally dabble in Web development. </p2>
-                    <p2>I mainly focus on C and C++ development, in the realm of OpenGL, but I also have experience working with HTML, CSS and JavaScript. </p2>
+                    <p2>I'm Destrea, and I'm a programmer with a passion for C++ Game Development, GLSL Shader programming, OpenGL Game Engine Development, and I occasionally dabble in Web development. </p2>
+                    <p2>I mainly focus on C and C++ development, but I also have experience working with HTML, CSS and JavaScript for web development, and some experience working in the Godot Game Engine. </p2>
                     <p2>Here on my website you can find and view my many different projects, including screenshots and descriptions of eachone, and typically a link to the GitHub where you can find the source code. </p2>
-                    <p2>This website in the future will also house a development blog for any of my future projects, but It'll mainly be focused on my Game and Game Engine Development. </p2>
-                    <p2>You can find me on: </p2>
-                    <p2>Bluesky: @destrea.dev </p2>
-                    <p2>GitHub:  https://github.com/Destrea </p2>
+                    <p2>In the future this website will also house a development blog for any of my future projects, but It'll mainly be focused on my Game and Game Engine Development. </p2>
+                    <h4>Socials: </h4>
+                    <div style="display: flex; flex-direction: row; align-items: center;">
+                        <a target="_blank" href="https://github.com/Destrea"><img  src="public/icons/GitHub_Invertocat_Black.png" width="40" height="40" style="border-color: white; margin: 5px;"></a>
+                        <a target="_blank" href="https://bsky.app/profile/destrea.dev"><img  src="public/icons/bluesky.png" width="40" height="40" style="border-color: white; margin: 5px;"></a>
+                    </div>
                 </div>
             </div>
 
@@ -102,7 +103,7 @@
                 </div>
             </div>
 
-            <div id="projectsList" class="projectContent" style="top: 500px; left: 70px;">
+            <div id="projectsList" class="projectContent" style="top: 500px; left: 70px; display: none;">
                 <div id="projectListtaskbar" class='taskbar'>
                     <h4 style="user-select: none; "> Projects List </h4>
                     <button onclick="closeWindow(this)" class="button button3"> X </button>
@@ -120,7 +121,21 @@
                 </div>
             </div>
 
-            <div id="navigationWindow" class="projectContent" style="top: 70px; left: 70px; display: none;">
+
+            <div id="modalImageBox" class="modalImage" style="left: 70px; top: 70px;">
+                <div id="modalImageBoxtaskbar" class='taskbar'>
+                    <h4 style="user-select: none;"> LOOKIE HERE!! </h4>
+                    <button onclick="closeWindow(this)" class="button button3"> X </button>
+                </div>
+
+                <div class="modalImageGallery">
+                    <button onclick="nextImage(-1)" id="menuBtn" class="button button3" style="margins: 0px; font-size: 32px;"> « </button>
+                    <button onclick="nextImage(1)" id="menuBtn" class="button button3" style="margins: 0px; font-size: 32px;"> » </button>
+                </div>
+                <img id="modalImage" src="public/images/ReShade/3D.png" alt="Image is missing">
+            </div>
+
+            <div id="navigationWindow" class="projectContent" style="top: 125px; left: 70px; display: none;">
                 <div id="projectContenttaskbar" class='taskbar'>
                     <h4 id="projectName" style="user-select: none;"> Navigation Tutorial </h4>
                     <button onclick="closeWindow(this)" class="button button3"> X </button>
@@ -142,30 +157,46 @@
         </div>
 
         <div class= "overlay">
-
             <canvas id= "canvas" width="100vw" height="100vh"></canvas>
-            <script src="public/script/main.js?v=0.91"></script>
-
+            <script src="public/script/main.js?v=0.93"></script>
+            <!--
+                <div class= "logobox">
+                    <img class="logo" src="public/images/DestreaLogoTemp.png" alt="destrea.dev" width="789" height="auto" style="opacity: .2; user-select: none; pointer-events: none; a">
+                </div>
+            -->
             <div class= "overlay-content">
+
                 <div class="animWrapper">
                     <div class="scroll-text">
+                        <!-- Duplicate text track allows it to repeat itself after the end-->
                         <div class="scroll-text-track">
-                            <span><h5>all content original</h5></span>
+                            <span><h5>[ games &amp&amp graphics ]</h5></span>
                             <span><h5>«»</h5></span>
-                            <span><h5>all content original</h5></span>
+                            <span><h5>{ all made with passion }</h5></span>
                             <span><h5>«»</h5></span>
-                            <span><h5>all content original</h5></span>
+                            <span><h5>[ destrea designworks ]</h5></span>
                             <span><h5>«»</h5></span>
-                            <span><h5>all content original</h5></span>
+                            <span><h5>{ interloper gameworks }</h5></span>
+                            <span><h5>«»</h5>
+                        </div>
+                        <div class="scroll-text-track">
+                            <span><h5>[ games &amp&amp graphics ]</h5></span>
+                            <span><h5>«»</h5></span>
+                            <span><h5>{ all made with passion }</h5></span>
+                            <span><h5>«»</h5></span>
+                            <span><h5>[ destrea designworks ]</h5></span>
+                            <span><h5>«»</h5></span>
+                            <span><h5>{ interloper gameworks }</h5></span>
                             <span><h5>«»</h5>
                         </div>
                     </div>
                 </div>
 
+
                 <div class="header-boxes">
-                    <div class="menu">
+                    <div class="menu" >
                         <!-- popout menu sits in its own div-->
-                        <div id="menuButtons" class="menuButtons">
+                        <div id="menuButtons" class="menuButtons" >
                             <button onclick="openWindow('Projects')" id="projectsMenu" class="button button2"> Projects </button>
                             <button onclick="openWindow('Settings')" id="settingsMenu" class="button button2"> Settings </button>
                             <button onclick="openWindow('About')" id="aboutMenu" class="button button2"> About </button>
@@ -173,8 +204,11 @@
                         <button onclick="toggleMenu()" id="menuBtn" class="button button2"> » </button>
                     </div>
                 </div>
+                <!-- <footer> </footer> -->
             </div>
+
         </div>
+
     </body>
-    <footer> <h1> test Text </h1> </footer>
+
 </html>

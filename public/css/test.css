@@ -70,14 +70,21 @@ h6 {
      margin: 0px 0px 0px 0px;
 }
 
-
 img {
+
+}
+
+.projectContent img {
+    padding: 2px 2px 2px 2px;
+    user-select: none;
+}
+
+.footer img {
     padding: 2px 2px 2px 2px;
     margin: 5px;
     user-select: none;
-    border: solid black 2px;
-    border-radius: 5px;
 }
+
 
 p {
     font-size: 24px;
@@ -206,29 +213,28 @@ canvas {
 
 .header-boxes {
     position: absolute;
-    display: flex:
+    display: flex;
     flex-direction: column;
     padding: 0px 0px 0px 10px;
+
 }
 
 .menu {
+    position: relative;
     display: flex;
     flex-direction: row;
-    margin: 0px 0px 0px 60px;
+    height: 50%;
+    padding-left: 60px;
+
 }
 
 .menuButtons {
     display: none;
     flex-direction: row;
+
 }
 
-.vertList {
-    position: absolute;
-    display: flex;
-    flex-direction: row;
-    padding: 0px 0px 0px 60px;
-    z-index: 1;
-}
+
 
 
 .scroll-text-track {
@@ -239,8 +245,12 @@ canvas {
     width: 60px;
     padding-top: 1.2rem;
     gap: 1.2rem;
-    animation: my-animation var(--speed, 10s) linear infinite
-    var(--direction, forwards);
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-name: my-animation;
+    animation-timing-function: linear;
+
+
     user-select: none;
 }
 
@@ -250,13 +260,15 @@ canvas {
 
 .scroll-text span {
     float: top;
-    height: 25%;
-
+    height: 12%;
 }
 
 @keyframes my-animation {
+    from {
+        transform: translateY( 0% );
+    }
     to {
-        transform: translateY(-50%);
+        transform: translateY(-100%);
     }
 }
 
@@ -264,6 +276,15 @@ canvas {
     position: absolute;
     display:  inline;
     z-index: 1;
+}
+
+
+
+.logobox {
+    position: absolute;
+    left: 50%;
+    top: 80%;
+    transform: translate(-50%, -50%);
 
 }
 
@@ -273,6 +294,7 @@ canvas {
     justify-content: space-between;
     background: grey;
     padding: 0px;
+    width: 100%;
     border-bottom: 3px solid black;
 }
 
@@ -290,20 +312,56 @@ canvas {
 }
 
 
-.modalWindow {
+.modalImage img {
+    padding: 2px 2px 2px 2px;
+    margin: 5px;
+    border: 1px solid gray;
+    border-radius: 1px;
 
+    max-height: 80vh;
+    max-width: 80vw;
+    object-fit: contain;
+}
+
+.modalImageGallery {
+    position: absolute;
+    opacity: 0.5;
+    padding-top: 57px;
+    padding-left: 10px;
+
+    display: flex;
+    flex-direction: row;
+
+
+
+}
+
+
+.modalImage {
+    background-color: white;
+    border: 3px solid black;
+    border-radius: 5px;
+    position: absolute;
+
+
+    max-height: 90vh;
+    max-width: 90vw;
+
+    display: none;
+    z-index:19;
+    flex-direction: column;
+}
+
+.modalWindow {
     position: absolute;
     left: 50%;
     top: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 
-
     background-color: white;
     border: 3px solid black;
     border-radius: 5px;
-
-    position: absolute;
     z-index: 12;
     display: None;
     flex-direction: column;
@@ -324,7 +382,6 @@ canvas {
 .projectContent {
     display: flex;
     flex-direction: column;
-
     background-color: white;
     border: 3px solid black;
     border-radius: 5px;
@@ -332,8 +389,8 @@ canvas {
     position: absolute;
     z-index: 8;
     display: None;
-    flex-direction: column;
     flex-wrap: wrap;
+
 }
 
 .project-description {
@@ -345,22 +402,28 @@ canvas {
     border: solid black 2px;
     border-radius: 5px;
     margin: 5px;
+    text-align: left;
 }
 
-#testdiv {
-    position: absolute;
-    z-index: 9;
-    background-color: white;
-    border: 1px solid black;
-    text-align: center;
+.gallery {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
 }
 
-#testdivHeader {
-    padding: 10px;
-    cursor: move;
-    z-index: 10;
-    background-color: redl
-    color: #fff;
+
+.image-box {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 300px;
+    justify-content: center;
+    align-items: center;
+    border: solid black 2px;
+    border-radius: 5px;
+    background: #b0b0b0;
 }
 
 .tektur-font {

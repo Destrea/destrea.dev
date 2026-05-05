@@ -1,4 +1,0 @@
-
-Add a "Scaling" option to the settings, and for mobile.
-
-Rework things to work correctly on mobile devices, or create a redirect to a mobile version of the website.
