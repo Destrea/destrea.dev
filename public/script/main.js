@@ -575,6 +575,7 @@ function imageModal()
     let img = document.getElementById("modalImage");
     img.src = gallery[n];
     document.getElementById("modalImageBox").style.display = "flex";
+    foregroundWindow(document.getElementById("modalImageBox"));
 
 }
 
