@@ -426,6 +426,7 @@ function dragElement(elmnt) {
         e = e || window.event;
         e.preventDefault();
 
+
         pos1 = pos3 - e.clientX;
         pos2 = pos4 - e.clientY;
         pos3 = e.clientX;
@@ -449,22 +450,16 @@ function dragElement(elmnt) {
 
 
 // Touch and Drag functionality (Mobile)
-touchDragElement(document.getElementById("projectDetails"));
-touchDragElement(document.getElementById("aboutMe"));
-touchDragElement(document.getElementById("projectSettings"));
-touchDragElement(document.getElementById("projectsList"));
-touchDragElement(document.getElementById("navigationWindow"));
-touchDragElement(document.getElementById("modalImageBox"));
+touchDragElement(document.getElementById("projectDetailstaskbar"));
+touchDragElement(document.getElementById("aboutMetaskbar"));
+touchDragElement(document.getElementById("projectSettingstaskbar"));
+touchDragElement(document.getElementById("projectsListtaskbar"));
+touchDragElement(document.getElementById("navigationWindowtaskbar"));
+touchDragElement(document.getElementById("modalImageBoxtaskbar"));
 
 function touchDragElement(elmnt) {
 
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-
-    if (document.getElementById(elmnt.id + "taskbar")) {
-        // if present, the header is where you move the DIV from:
-        elmnt = document.getElementById(elmnt.id + "taskbar");
-    }
-
 
 
     function handleTouchStart(e) {
