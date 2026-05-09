@@ -905,6 +905,47 @@ function declineCookies()
     document.getElementById("modalWin").style.display = "none";
 }
 
+
+var prevModifier = 0;
+var prevFontSetting = 1;
+var fontSetting = 1;
+function changeFontSize(value)
+{
+    prevFontSetting = fontSetting;
+
+    var modifier = 0;
+    //Small
+    if(value === 1)
+    {
+        fontSetting = value;
+        modifier = 0;
+    }
+    if(value === 2)
+    {
+        fontSetting = value;
+        modifier = 5;
+    }
+    if(value === 3)
+    {
+        fontSetting = value;
+        modifier = 10;
+    }
+
+
+    var elems = document.querySelectorAll('*');
+
+    for (var i=elems.length; i--;) {
+        var f_size = getComputedStyle(elems[i]).fontSize;
+        var numb   = f_size.replace(/\D/g,''); // the number
+        var val    = f_size.replace(/\d/g,''); // px
+
+        elems[i].style.fontSize = (+numb + modifier - prevModifier) + val;
+    }
+    prevModifier = modifier;
+}
+
+
+
 //Mobile and Desktop functionality
 function isMobileRegex() {
     const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
@@ -922,6 +963,7 @@ if (isMobileRegex() || hasTouchSupport()) {
 
 
 
+
 } else {
     debugText.innerHTML = "device is NOT mobile";
 
@@ -933,7 +975,6 @@ if (isMobileRegex() || hasTouchSupport()) {
 function checkAspectRatio()
 {
     let aspectRatio = window.innerWidth / window.innerHeight;
-    console.log(9 / aspectRatio);
     devAspectRatio.innerHTML = Math.round((9 / aspectRatio)*10)/10;
 
 }

@@ -2,7 +2,7 @@
 <html>
     <head>
         <!-- CSS -->
-        <link rel="stylesheet" href="public/css/test.css?v=0.948" type="text/css">
+        <link rel="stylesheet" href="public/css/test.css?v=0.949" type="text/css">
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -90,6 +90,12 @@
                     <button onclick="closeWindow(this)" ontouchstart="closeWindow(this)" class="button button3"> X </button>
                 </div>
                 <div class="content-container">
+                    <p> [Font Settings] </p>
+                    <p1> Font Size </p1>
+                    <button onclick="changeFontSize(1)"  class="button button3"> Small </button>
+                    <button onclick="changeFontSize(2)"  class="button button3"> Medium </button>
+                    <button onclick="changeFontSize(3)"  class="button button3"> Large </button>
+
                     <p> [Background Settings] </p>
                     <p1> Perlin Intensity </p1>
                     <div class="slidecontainer">
@@ -131,7 +137,7 @@
             <div id="modalImageBox" class="modalImage" style="left: 70px; top: 70px;">
                 <div id="modalImageBoxtaskbar" class='taskbar'>
                     <h4 style="user-select: none;"> LOOKIE HERE!! </h4>
-                    <button onclick="closeWindow(this)" class="button button3"> X </button>
+                    <button onclick="closeWindow(this)" ontouchstart="closeWindow(this)" class="button button3"> X </button>
                 </div>
 
                 <div class="modalImageGallery">
@@ -165,7 +171,7 @@
 
         <div class= "overlay">
             <canvas id= "canvas" width="100vw" height="100vh"></canvas>
-            <script src="public/script/main.js?v=0.948"></script>
+            <script src="public/script/main.js?v=0.949"></script>
                 <div class= "logobox">
 
                 </div>
