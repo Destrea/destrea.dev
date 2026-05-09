@@ -389,6 +389,10 @@ function shadersMain()
 
 shadersMain();
 
+
+
+
+// Click and Drag functionality (Mouse/Desktop)
 dragElement(document.getElementById("projectContent"));
 dragElement(document.getElementById("aboutMe"));
 dragElement(document.getElementById("project-settings"));
@@ -440,9 +444,73 @@ function dragElement(elmnt) {
         return Math.max(min, Math.min(value, max));
     }
 
-
-
 }
+
+
+
+// Touch and Drag functionality (Mobile)
+touchDragElement(document.getElementById("projectContent"));
+touchDragElement(document.getElementById("aboutMe"));
+touchDragElement(document.getElementById("project-settings"));
+touchDragElement(document.getElementById("projectsList"));
+touchDragElement(document.getElementById("navigationWindow"));
+touchDragElement(document.getElementById("modalImageBox"));
+
+function touchDragElement(elmnt) {
+
+    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    if (document.getElementById(elmnt.id + "taskbar")) {
+        // if present, the header is where you move the DIV from:
+        elmnt = document.getElementById(elmnt.id + "taskbar");
+    }
+
+
+
+    function handleTouchStart(e) {
+        e.preventDefault();
+        pos3 = e.touches[0].clientX;
+        pos4 = e.touches[0].clientY;
+    }
+
+
+    function handleTouchMove(e) {
+        e.preventDefault();
+
+        pos1 = pos3 - e.touches[0].clientX;
+        pos2 = pos4 - e.touches[0].clientY;
+        pos3 = e.touches[0].clientX;
+        pos4 = e.touches[0].clientY;
+        var parent = elmnt.parentNode;
+        parent.style.top = clamp((parent.offsetTop - pos2), 5, (window.innerHeight - 5 - parent.offsetHeight)) + "px";
+        parent.style.left = clamp((parent.offsetLeft - pos1), 70, (window.innerWidth - 5 - parent.offsetWidth)) + "px";
+        foregroundWindow(parent);
+    }
+
+    function handleTouchEnd(e) {
+        e.preventDefault();
+    }
+
+
+    elmnt.ontouchstart=function(e){
+        handleTouchStart(e);
+    }
+
+    elmnt.ontouchmove=function(e){
+        handleTouchMove(e);
+    }
+
+    elmnt.ontouchend=function(e){
+        handleTouchEnd(e);
+    }
+
+    function clamp (value, min, max) {
+        return Math.max(min, Math.min(value, max));
+    }
+}
+
+
+
+
 
 
 function foregroundWindow(elmnt)
@@ -726,14 +794,14 @@ function loadProject(value)
         - Entity Component System<br />
         - Resource Management (Shaders, 3D Models/Meshes, Textures)<br />
         - Input Management <br />
-        - Native C++ Scripting <br />
+        - Native C++ Scripting <br /><br />
 
         My current roadmap before developing a game still requires: <br />
         - Complete scene serialization and deserialization <br />
         - Flying Editor camera, and 3D gizmos <br />
         - 3D collision detection and resolution <br />
         - Simple raycast functionality <br />
-        - Audio management <br />
+        - Audio management <br /><br />
 
 
         Project Dependencies: <br />
@@ -841,12 +909,6 @@ function declineCookies()
     document.getElementById("modalWin").style.display = "none";
 }
 
-
-
-
-
-
-
 //Mobile and Desktop functionality
 function isMobileRegex() {
     const regex = /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
@@ -859,12 +921,26 @@ function hasTouchSupport() {
 
 if (isMobileRegex() || hasTouchSupport()) {
     debugText.innerHTML = "device is mobile";
-
+    checkAspectRatio();
     //Run Mobile Javascript events here
+
 
 
 } else {
     debugText.innerHTML = "device is NOT mobile";
 
     //Run Desktop Javascript events here
+
 }
+
+
+function checkAspectRatio()
+{
+    let aspectRatio = window.innerWidth / window.innerHeight;
+    console.log(9 / aspectRatio);
+    devAspectRatio.innerHTML = Math.round((9 / aspectRatio)*10)/10;
+
+}
+
+
+
