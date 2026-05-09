@@ -393,9 +393,9 @@ shadersMain();
 
 
 // Click and Drag functionality (Mouse/Desktop)
-dragElement(document.getElementById("projectContent"));
+dragElement(document.getElementById("projectDetails"));
 dragElement(document.getElementById("aboutMe"));
-dragElement(document.getElementById("project-settings"));
+dragElement(document.getElementById("projectSettings"));
 dragElement(document.getElementById("projectsList"));
 dragElement(document.getElementById("navigationWindow"));
 dragElement(document.getElementById("modalImageBox"));
@@ -449,9 +449,9 @@ function dragElement(elmnt) {
 
 
 // Touch and Drag functionality (Mobile)
-touchDragElement(document.getElementById("projectContent"));
+touchDragElement(document.getElementById("projectDetails"));
 touchDragElement(document.getElementById("aboutMe"));
-touchDragElement(document.getElementById("project-settings"));
+touchDragElement(document.getElementById("projectSettings"));
 touchDragElement(document.getElementById("projectsList"));
 touchDragElement(document.getElementById("navigationWindow"));
 touchDragElement(document.getElementById("modalImageBox"));
@@ -459,6 +459,7 @@ touchDragElement(document.getElementById("modalImageBox"));
 function touchDragElement(elmnt) {
 
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+
     if (document.getElementById(elmnt.id + "taskbar")) {
         // if present, the header is where you move the DIV from:
         elmnt = document.getElementById(elmnt.id + "taskbar");
@@ -556,7 +557,7 @@ function openWindow(value)
 {
     if(value == "Settings" )
     {
-        let elmnt =  document.getElementById("project-settings");
+        let elmnt =  document.getElementById("projectSettings");
         elmnt.style.display = "flex";
         foregroundWindow(elmnt);
     }
@@ -651,7 +652,7 @@ function imageModal()
 
 function loadProject(value)
 {
-    let content = document.getElementById("projectContent");
+    let content = document.getElementById("projectDetails");
     foregroundWindow(content);
     content.style.display = "flex";
 

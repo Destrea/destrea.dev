@@ -2,7 +2,7 @@
 <html>
     <head>
         <!-- CSS -->
-        <link rel="stylesheet" href="public/css/test.css?v=0.945" type="text/css">
+        <link rel="stylesheet" href="public/css/test.css?v=0.946" type="text/css">
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,10 +43,10 @@
 
         <div id="itemWindows">
 
-            <div id="projectContent" class="projectContent" style="top: 142px; left: 352px; display: none;">
-                <div id="projectContenttaskbar" class='taskbar'>
+            <div id="projectDetails" class="projectContent" style="top: 142px; left: 352px; display: none;">
+                <div id="projectDetailstaskbar" class='taskbar'>
                     <h4 style="user-select: none;"> Project Information </h4>
-                    <button onclick="closeWindow(this)" class="button button3"> X </button>
+                    <button onclick="closeWindow(this)"  class="button button3"> X </button>
                 </div>
                     <h4 id="projectName" style="user-select: none; padding-bottom: 5px; text-decoration: underline;"> Project Name </h4>
                 <div id="gallery" class="gallery" style="display: flex;">
@@ -86,8 +86,8 @@
                 </div>
             </div>
 
-            <div id="project-settings" class="projectContent" style="top: 500px; left: 70px;">
-                <div id="project-settingstaskbar" class='taskbar'>
+            <div id="projectSettings" class="projectContent" style="top: 500px; left: 70px;">
+                <div id="projectSettingstaskbar" class='taskbar'>
                     <h4 style="user-select: none;"> Settings </h4>
                     <button onclick="closeWindow(this)" class="button button3"> X </button>
                 </div>
@@ -112,7 +112,7 @@
             </div>
 
             <div id="projectsList" class="projectContent" style="top: 500px; left: 70px; display: none;">
-                <div id="projectListtaskbar" class='taskbar'>
+                <div id="projectsListtaskbar" class='taskbar'>
                     <h4 style="user-select: none; "> Projects List </h4>
                     <button onclick="closeWindow(this)" class="button button3"> X </button>
                 </div>
@@ -146,7 +146,7 @@
             <div id="navigationWindow" class="projectContent" style="top: 125px; left: 70px; display: none;">
                 <div id="navigationWindowtaskbar" class='taskbar'>
                     <h4 id="projectName" style="user-select: none;"> Navigation Tutorial </h4>
-                    <button onclick="closeWindow(this)" class="button button3"> X </button>
+                    <button onclick="closeWindow(this)" ontouchstart="closeWIndow(this)" class="button button3"> X </button>
                 </div>
                 <div class="content-container" style="display: flex; flex-direction: column; text-align: left; padding: 5px;">
                  <h4 style="user-select: none; padding: 0px;"> How to Navigate: </h4>
@@ -167,7 +167,7 @@
 
         <div class= "overlay">
             <canvas id= "canvas" width="100vw" height="100vh"></canvas>
-            <script src="public/script/main.js?v=0.945"></script>
+            <script src="public/script/main.js?v=0.946"></script>
                 <div class= "logobox">
 
                 </div>
