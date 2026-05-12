@@ -652,12 +652,18 @@ function loadProject(value)
     content.style.display = "flex";
 
 
+    if(value !== "p4")
+    {
+        document.getElementById("videoDiv").style.display = "flex";
+    }
+
     if(value == "s1")
     {
         currentProject = "s1";
         imageIndex = 0;
         showSlides(imageIndex, currentProject);
         //changeImage("public/images/Timelost/Timelost1.png");
+        changeLink("", "https://youtu.be/6RzoZncmLPY");
         document.getElementById("projectGithub").style.display = "none";
         document.getElementById("projectName").innerHTML = "Tower of the Timelost";
         document.getElementById("projectDate").innerHTML = "Date: August - December 2023";
@@ -687,7 +693,7 @@ function loadProject(value)
         imageIndex = 0;
         showSlides(imageIndex, currentProject);
         //changeImage("public/images/GodotShaders/GodotShader1.png");
-        changeLink("https://github.com/Destrea/GodotShadersProject");
+        changeLink("https://github.com/Destrea/GodotShadersProject", "https://youtu.be/sQTYYDeRbpM");
         document.getElementById("projectName").innerHTML = "Godot Shaders Exploration";
         document.getElementById("projectDate").innerHTML = "Date: January - May 2025";
         document.getElementById("descrText").innerHTML = `This project was completed as part of my "Topics in Game Development" course that I took as an elective for my computer science degree. Continuing beyond the Game Programming course, this course was focused around picking or technique in game development, and to spend an entire 15 week semester creating a project built around that concept. <br /><br />
@@ -728,7 +734,7 @@ function loadProject(value)
         imageIndex = 0;
         showSlides(imageIndex, currentProject);
         //changeImage("public/images/ScoringTool/ScoringTool1.png");
-        changeLink("https://github.com/Destrea/Mahjong-Scoring-Tool");
+        changeLink("https://github.com/Destrea/Mahjong-Scoring-Tool", "https://youtu.be/XOf0tsTe2aU");
         document.getElementById("projectName").innerHTML = "Mahjong Scoring Calculator";
         document.getElementById("projectDate").innerHTML = "Date: January 2025 - August 2025";
         document.getElementById("descrText").innerHTML = `In January 2025 I was working in the Godot Game engine, and I decided that I wanted to learn how it's UI features worked. Alongside this, I had been learning to play Riichi Mahjong for roughly 6 months. This is a game with notoriously complex rules, and a very long list of scoring hands known as "Yaku" that reward you with points upon their formation. These Yaku can be combined with one another, and contribute different amounts of score. Because of this, I figured that making a scoring calculator would be a great test of learning Godot's UI features, as well as learning the rules and scoring for Riichi Mahjong more thoroughly. <br /><br />
@@ -750,7 +756,7 @@ function loadProject(value)
         imageIndex = 0;
         showSlides(imageIndex, currentProject);
         //changeImage("public/images/ReShade/Shader3BitClose.png");
-        changeLink("https://github.com/Destrea/DestreaFX");
+        changeLink("https://github.com/Destrea/DestreaFX", "https://youtu.be/JB2X-bTES90");
         document.getElementById("projectName").innerHTML = "ReShade Shader Effects";
         document.getElementById("projectDate").innerHTML = "Date: May 2025 - Current";
         document.getElementById("descrText").innerHTML = `Following my time working on the "Godot Shaders Exploration" project in Spring 2025, I began exploring how I could continue learning about shader techniques within the context of games, closer to how it's done in actual graphics APIs, and with "quicker" visual feedback. <br /><br />
@@ -776,7 +782,7 @@ function loadProject(value)
 
         //TODO: Add links to all of the Dependencies.
         //changeImage("public/images/GameEngine/Engine1.png");
-        changeLink("https://github.com/Destrea/Interloper-Engine");
+        changeLink("https://github.com/Destrea/Interloper-Engine", "https://youtu.be/ty5V_efmJ5c");
         document.getElementById("projectName").innerHTML = "Interloper Game Engine";
         document.getElementById("projectDate").innerHTML = "Date: August 2025 - Current";
         document.getElementById("descrText").innerHTML = `The intent behind making the Interloper Game Engine was a goal to piggyback off my initial intent with making the ReShade shaders, to learn how a graphics API works, and what it's role is in game development. I began by learning OpenGL, using "learnOpenGL.com", and quickly found out that I loved the process. This then began a long term project of creating my own game engine so that I can make my own games in it. I've really loved working on this project alongside my college courses, anytime I've found the time to work on it. <br /> <br />
@@ -808,7 +814,7 @@ function loadProject(value)
         - Assimp <br />
         - Entt <br />
         - Dear ImGui <br />
-        - YAML cpp <br />
+        - YAML cpp <br /> <br />
 
 
 
@@ -829,6 +835,7 @@ function loadProject(value)
         //TODO: Add either an image for the website, or
         //changeImage("public/images/Website1.png");
         changeLink("https://github.com/Destrea/destrea.dev");
+        document.getElementById("videoDiv").style.display = "none";
         document.getElementById("projectName").innerHTML = "Portfolio Website";
         document.getElementById("projectDate").innerHTML = "Date: Feb 2026 - Current";
         document.getElementById("descrText").innerHTML = `I created this website for two major reasons. First, I wanted a website where I could show off all of my portfolio projects, so that they're out in the open for anyone who's interested in any of my projects, and when they were made. Secondly, I wanted to toy around with HTML, CSS and JavaScript to create a website where I can create and host any tools or projects that would work really well hosted on a website, such as tools that utilize API calls to provide a service for anyone interested. <br /><br />
@@ -850,9 +857,10 @@ function changeImage(a)
     document.getElementById("contentImg").src = a;
 }
 
-function changeLink(a)
+function changeLink(a,b)
 {
      document.getElementById("projectGithub").href = a;
+     document.getElementById("videoDemonstration").href = b;
 }
 
 
