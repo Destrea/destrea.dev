@@ -782,7 +782,8 @@ function loadProject(value)
 
         //TODO: Add links to all of the Dependencies.
         //changeImage("public/images/GameEngine/Engine1.png");
-        changeLink("https://github.com/Destrea/Interloper-Engine", "https://youtu.be/ty5V_efmJ5c");
+        changeLink("https://github.com/Destrea/Interloper-Engine", "");
+        document.getElementById("videoDiv").style.display = "none";
         document.getElementById("projectName").innerHTML = "Interloper Game Engine";
         document.getElementById("projectDate").innerHTML = "Date: August 2025 - Current";
         document.getElementById("descrText").innerHTML = `The intent behind making the Interloper Game Engine was a goal to piggyback off my initial intent with making the ReShade shaders, to learn how a graphics API works, and what it's role is in game development. I began by learning OpenGL, using "learnOpenGL.com", and quickly found out that I loved the process. This then began a long term project of creating my own game engine so that I can make my own games in it. I've really loved working on this project alongside my college courses, anytime I've found the time to work on it. <br /> <br />
