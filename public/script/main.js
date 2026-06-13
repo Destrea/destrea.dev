@@ -101,7 +101,7 @@ float perlinnoise(vec2 p)
 
     float wave = ( (1.0/4.0) * sin(sqrt(10.0) * sin((wavespeed/50.0) * uTime) + cos(uTime))) + 1.0;
     float n_xy = mix(n_x.x, n_x.y, fade_xy.y);
-    return wave * (intensity/20.0) * n_xy;
+    return wave * (3.0+(intensity / 50.0) ) * n_xy;
 }
 
 float color(vec2 xy) { return perlinnoise(1.5*xy); }
@@ -109,6 +109,11 @@ float color(vec2 xy) { return perlinnoise(1.5*xy); }
 float getBayer4(int x, int y)
 {
     return float(bayer4[x % 4][y % 4]) * (1.0f / 16.0f);
+}
+
+float getBayer8(int x, int y)
+{
+    return float(bayer8[(x % 8)+(y % 8 )* 8]) * (1.0f / 64.0f) - 0.5f;
 }
 
 vec3 posterize( vec3 color, int levels)
@@ -147,7 +152,7 @@ float luminance(vec3 color)
 void main()
 {
     //downscaling
-    int downscaleVal = 16;
+    int downscaleVal = 4;
 
     //Cool horizontal glitch effect
     /*
@@ -157,8 +162,8 @@ void main()
     */
 
     //This downscales the resolution to
-    float resolutionX = float(int( float(downscaleVal) * round(u_resolution.x / float(downscaleVal)))) - 2.0;
-    float resolutionY = float(int( float(downscaleVal) * round(u_resolution.xy/ float(downscaleVal)))) - 2.0;
+    float resolutionX = float(int( float(downscaleVal) * round(u_resolution.xy / float(downscaleVal))));
+    float resolutionY = float(int( float(downscaleVal) * round(u_resolution.xy / float(downscaleVal))));
     //vec2 resolution = vec2(u_resolution.x, u_resolution.y);
     vec2 resolution = vec2(resolutionX, resolutionY);
 
@@ -173,51 +178,59 @@ void main()
 
     //Dithering
 
-    vec3 thresh = vec3(1.0/8.0);
+    vec3 thresh = vec3(1.0/3.0);
     int x = int(gl_FragCoord.x) * 2;
     int y = int(gl_FragCoord.y) * 2;
-    float factor = getBayer4(x % 4, y % 4);
-    //float factor = float(bayer8[y * 8 + x]) / 64.0;
+    //float factor = getBayer4(x % 4, y % 4);
+    float factor = getBayer8(x, y);
 
-    finalColor = posterize(finalColor,16);
+    //finalColor = posterize(finalColor,16);
 
     vec3 attempt = finalColor + (factor) + 0.2;
     vec3 pColor = vec3(0.0,0.0,0.0);
 
-    //pColor = closestColor(palette, attempt, 6);
+    bool alternateColor = true;
 
-    if(attempt.r >= (7.0 * 0.125))
+    if(alternateColor)
     {
-        pColor = color0;
-    }
-    else if(attempt.r >= (6.0 * 0.125))
-    {
-         pColor = color1;
-    }
-    else if(attempt.r >= (5.0 * 0.125))
-    {
-         pColor = color2;
-    }
-    else if(attempt.r >= (4.0 * 0.125))
-    {
-         pColor = color3;
-    }
-    else if(attempt.r >= (3.0 * 0.125))
-    {
-         pColor = color4;
-    }
-    else if(attempt.r >= (2.0 * 0.125))
-    {
-         pColor = color5;
-    }
-    else if(attempt.r >= (1.0 * 0.125))
-    {
-         pColor = color6;
+        if(attempt.r >= (7.0 * 0.125))
+        {
+            pColor = color0;
+        }
+        else if(attempt.r >= (6.0 * 0.125))
+        {
+            pColor = color1;
+        }
+        else if(attempt.r >= (5.0 * 0.125))
+        {
+            pColor = color2;
+        }
+        else if(attempt.r >= (4.0 * 0.125))
+        {
+            pColor = color3;
+        }
+        else if(attempt.r >= (3.0 * 0.125))
+        {
+            pColor = color4;
+        }
+        else if(attempt.r >= (2.0 * 0.125))
+        {
+            pColor = color5;
+        }
+        else if(attempt.r >= (1.0 * 0.125))
+        {
+            pColor = color6;
+        }
+        else
+        {
+            pColor = color7;
+        }
     }
     else
     {
-        pColor = color7;
+        pColor = closestColor(palette, attempt, 6);
     }
+
 
     fragColor = vec4(pColor, 1.0);
 }`;
